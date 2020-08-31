@@ -12,10 +12,10 @@ import Header from '../../components/Header/styles';
 interface Repository {
   poster_path: string;
   adult: boolean;
+  original_title: string;
+  title: string;
   overview:string;
   release_date: string;
-  genre_ids: number;
-
 
 }
 const Dashboard: React.FC = () => {
@@ -25,14 +25,16 @@ const Dashboard: React.FC = () => {
   const [inputError, setInputError] = useState('')
 
   const [repositories, setRepositories] = useState<Repository[]>(() => {
-    // const storagedRepositories = localStorage.getItem(
-    //   '@GithubExplorer:repositories',
-    // );
-    // if (storagedRepositories) {
-    //   return JSON.parse(storagedRepositories);
-    // }
+
+    const storagedRepositories = localStorage.getItem(
+      '@GithubExplorer:repositories',
+    );
+    if (storagedRepositories) {
+      return JSON.parse(storagedRepositories);
+    }
     return [];
   });
+
 
   async function searhMovie(event: FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
@@ -42,13 +44,18 @@ const Dashboard: React.FC = () => {
       return;
     }
 
+
     try {
-      const response = await api.get<Repository>(`repos/${newSearch}`);
+      const api_url = '2bf45dbd029ec4fbc6d4df66adb594c9';
+
+      const response = await api.get<Repository>(`/search/movie?api_key=${api_url}&query= ${newSearch} `);
+
       const repository = response.data;
 
-        setRepositories([...repositories, repository]);
-        setNewSearch('');
-        setInputError('');
+        // setRepositories([...repositories, repository]);
+        // setNewSearch('');
+        // setInputError('');
+        console.log(repository);
 
     }
 
@@ -77,15 +84,13 @@ const Dashboard: React.FC = () => {
 
       <Repositories>
         {repositories.map((repository) => (
-          <Link key={repository.poster_path}
-            to={`/repositories/${repository.adult}`}>
+          <Link key={repository.original_title}
+            to={`/repositories/${repository.original_title}`}>
             <img
-              src={repository.overview}
+              src={repository.poster_path}
               alt={repository.release_date}
             />
             <div>
-              <strong>{repository.genre_ids}</strong>
-
             </div>
             <FiChevronRight size={20} />
           </Link>
