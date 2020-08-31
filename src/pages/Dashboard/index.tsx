@@ -20,7 +20,7 @@ interface Repository {
 }
 const Dashboard: React.FC = () => {
 
-  const [newRepo, setNewRepo] = useState('');
+  const [newSearch, setNewSearch] = useState('');
 
   const [inputError, setInputError] = useState('')
 
@@ -34,20 +34,20 @@ const Dashboard: React.FC = () => {
     return [];
   });
 
-  async function addRepository(event: FormEvent<HTMLFormElement>): Promise<void> {
+  async function searhMovie(event: FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
 
-    if (!newRepo) {
+    if (!newSearch) {
       setInputError('Adicione um repositório');
       return;
     }
 
     try {
-      const response = await api.get<Repository>(`repos/${newRepo}`);
+      const response = await api.get<Repository>(`repos/${newSearch}`);
       const repository = response.data;
 
         setRepositories([...repositories, repository]);
-        setNewRepo('');
+        setNewSearch('');
         setInputError('');
 
     }
@@ -63,10 +63,10 @@ const Dashboard: React.FC = () => {
     <>
       <Header>Movies</Header>
 
-      <Form hasError={!!inputError} onSubmit={addRepository} >
+      <Form hasError={!!inputError} onSubmit={searhMovie} >
         <input
-          value={newRepo}
-          onChange={(e) => setNewRepo(e.target.value)}
+          value={newSearch}
+          onChange={(e) => setNewSearch(e.target.value)}
           placeholder="
            Busque um filme por nome ano ou gênero..."
         />
