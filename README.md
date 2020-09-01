@@ -1,8 +1,9 @@
 # Sobre
 Esse foi um desafio proposto pela empresa de tecnologia: Cubos Tecnologia e pudemos consumir a api da the moviedb.org/ e visualisar os filmes trazidos pela api.
 
-# Meu muito obrigado pela oportunidade
-## Demostração do projeto:
+# Meu muito obrigado pela oportunidade!!!!!!
+
+## Clique no link abaixo para ver como ficou o projeto:
 
 [Desafio](https://youtu.be/ZaDlhCAl4yI)
 
