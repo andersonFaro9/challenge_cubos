@@ -1,23 +1,20 @@
-import React, { useState, useEffect, FormEvent } from "react";
+import React, { useState, FormEvent } from "react";
 
-import { Form, Repositories, Error } from './styles';
+import { Form, Films, Error } from './styles';
 
 import { FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import api from '../../services/api'
 import Header from '../../components/Header/styles';
 
-interface Repository {
+interface IProperties {
   id: string;
   poster_path: string;
   adult: false;
   release_date: string;
   original_title: string;
   overview:string;
-  title:string;
   backdrops:string;
-  backdrop_path: string;
-
 
 }
 const Dashboard: React.FC = () => {
@@ -26,7 +23,7 @@ const Dashboard: React.FC = () => {
 
   const [inputError, setInputError] = useState('');
 
-  const [repositories, setRepositories] = useState<Repository[]>([]);
+  const [movies, setMovies] = useState<IProperties[]>([]);
 
   async function searhMovie(event: FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
@@ -42,12 +39,12 @@ const Dashboard: React.FC = () => {
 
       const response = await api.get(`/search/movie?api_key=${api_url}&query= ${newSearch}`);
 
-      const repository = response.data.results;
+      const results = response.data.results;
 
-        setRepositories(repository);
+        setMovies(results);
         setNewSearch('');
         setInputError('');
-        console.log(repository);
+        console.log(results);
 
     }
 
@@ -77,8 +74,8 @@ const Dashboard: React.FC = () => {
       {inputError && <Error>{inputError}</Error>}
 
 
-      <Repositories>
-        {repositories.map((movie, mv ) => (
+      <Films>
+        {movies.map((movie, mv ) => (
           <Link key={mv}
             to={"" }>
             <img
@@ -95,7 +92,7 @@ const Dashboard: React.FC = () => {
 
         ))}
 
-      </Repositories>
+      </Films>
     </>
   )
 }

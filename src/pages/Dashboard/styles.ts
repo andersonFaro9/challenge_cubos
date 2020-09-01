@@ -93,7 +93,7 @@ export const Error = styled.span`
     margin-top:30px;
   `;
 
-export const Repositories = styled.div`
+export const Films = styled.div`
 
   margin-top: 30px;
   max-width: 100%;
