@@ -11,13 +11,26 @@ interface RepositoryParams {
   repository: string;
 }
 
+
+// original_title: "Jack Ryan: Shadow Recruit"
+// overview: "Jack Ryan, as a young covert CIA analyst, uncovers a Russian plot to crash the U.S. economy with a terrorist attack."
+// popularity: 33.55
+// poster_path: "/m7HcLUodrD4lM4s0Hui1tzO2pjO.jpg"
+// release_date: "2014-01-15"
+// title: "Jack Ryan: Shadow Recruit"
+// video: false
+// vote_average: 6.1
+// vote_count: 2053
+
 interface Repository {
-  id: number;
+
   original_title: string;
   original_language: string;
   title : string;
+  id: string;
+  // release_date: string;
   backdrop_path: string;
-  popularity: string;
+  popularity: number;
   vote_count: number;
   video : false;
   vote_average: number;
@@ -29,7 +42,7 @@ interface Issue {
   original_title: string;
   original_language: string;
   title : string;
-  backdrop_path: string;
+  poster_path: string;
   popularity: string;
   vote_count: number;
   video : false;
@@ -39,13 +52,18 @@ interface Issue {
 
 const Repository: React.FC = () => {
   const [repository, setRepository] = useState<Repository | null>(null);
-  const [issues, setIssues] = useState<Issue[]>([]);
+  //const [issues, setIssues] = useState<Issue[]>([]);
 
   const { params } = useRouteMatch<RepositoryParams>();
 
   useEffect(() => {
-    api.get(`repos/${params.repository}`).then(response => {
+
+    const api_url = '2bf45dbd029ec4fbc6d4df66adb594c9';
+
+
+    api.get(`/search/movie/?api_key=${api_url}&query= ${repository}`).then(response => {
       setRepository(response.data);
+      console.log(response.data);
     });
 
 
@@ -61,8 +79,8 @@ const Repository: React.FC = () => {
           <header>
             <img src={repository.backdrop_path} alt={repository.backdrop_path} />
             <div>
-              <strong>{repository.title}</strong>
-              <p>{repository.original_title}</p>
+              <strong>{repository.original_title}</strong>
+              <p>{repository.popularity}</p>
             </div>
           </header>
           <ul>

@@ -10,22 +10,23 @@ import api from '../../services/api'
 import Header from '../../components/Header/styles';
 
 interface Repository {
+  id: string;
   poster_path: string;
-  adult: boolean;
-  original_title: string;
-  title: string;
-  overview:string;
+  adult: false;
   release_date: string;
+  original_title: string;
+  overview:string;
+  title:string;
+
 
 }
 const Dashboard: React.FC = () => {
 
   const [newSearch, setNewSearch] = useState('');
 
-  const [inputError, setInputError] = useState('')
+  const [inputError, setInputError] = useState('');
 
   const [repositories, setRepositories] = useState<Repository[]>(() => {
-
     const storagedRepositories = localStorage.getItem(
       '@GithubExplorer:repositories',
     );
@@ -35,6 +36,9 @@ const Dashboard: React.FC = () => {
     return [];
   });
 
+  useEffect (() => {
+
+  }, [repositories])
 
   async function searhMovie(event: FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
@@ -48,13 +52,14 @@ const Dashboard: React.FC = () => {
     try {
       const api_url = '2bf45dbd029ec4fbc6d4df66adb594c9';
 
-      const response = await api.get<Repository>(`/search/movie?api_key=${api_url}&query= ${newSearch} `);
+      const response = await api.get<Repository>(`/search/movie?api_key=${api_url}&query= ${newSearch}`);
 
       const repository = response.data;
 
-        // setRepositories([...repositories, repository]);
-        // setNewSearch('');
-        // setInputError('');
+        setRepositories([...repositories, repository]);
+        setNewSearch('');
+        setInputError('');
+
         console.log(repository);
 
     }
@@ -82,15 +87,18 @@ const Dashboard: React.FC = () => {
 
       {inputError && <Error>{inputError}</Error>}
 
+
       <Repositories>
-        {repositories.map((repository) => (
-          <Link key={repository.original_title}
-            to={`/repositories/${repository.original_title}`}>
+        {repositories.map((movie, i) => (
+          <Link key={i}
+            to={`/search/movies/${newSearch}` }>
             <img
-              src={repository.poster_path}
-              alt={repository.release_date}
+              src={movie.poster_path}
+              alt={movie.poster_path}
             />
             <div>
+              <p>{movie.poster_path}</p>
+              <p>{movie.poster_path}</p>
             </div>
             <FiChevronRight size={20} />
           </Link>
