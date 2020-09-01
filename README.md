@@ -1,6 +1,11 @@
 # Sobre
 Esse foi um desafio proposto pela empresa de tecnologia: Cubos Tecnologia e pudemos consumir a api da the moviedb.org/ e visualisar os filmes trazidos pela api.
 
+# Meu muito obrigado pela oportunidade
+## Demostração do projeto:
+
+[Desafio](https://youtu.be/ZaDlhCAl4yI)
+
 ## Tecnologias utilizadas no projeto.
 
 - React JS
@@ -19,6 +24,7 @@ Esse foi um desafio proposto pela empresa de tecnologia: Cubos Tecnologia e pude
 - Para visualizar, primeiro em seu terminal, digite o comando yarn start, depois de carregado, vá ao seu navegador, coloque: http://localhost:3000/
 
 - Nesse desafio foi configurado e instalado ferramentas como o eslint, editorconfig, prettier.config.js, entre outros; Para maiores informações, segue link com os detalhes: https://www.notion.so/Padr-es-de-projeto-com-ESLint-Prettier-e-EditorConfig-0b57b47a24724c859c0cf226aa0cc3a7
+
 
 ## :memo: Licença
 
