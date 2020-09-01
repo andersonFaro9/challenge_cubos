@@ -15,7 +15,7 @@ export default createGlobalStyle`
   }
 
   body , button, input{
-    font: 16px  Abel, Lato, sans-serif;
+    font: 22px  Abel, Lato, sans-serif;
 
   }
 

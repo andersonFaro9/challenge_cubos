@@ -36,7 +36,7 @@ export const Form = styled.form<FormProps> `
     border: 0;
     border-right:0;
     background-color: #e6e6e6;
-    border-radius: 21px;
+    border-radius: 16px;
     color: #3A3A3A;
     border: 2px solid #FFF;
     border-right:0;
@@ -65,6 +65,8 @@ export const Form = styled.form<FormProps> `
       background: ${shade(0.2, '#1E90FF')};
     }
   }
+
+
   @media (max-width: 600px) {
     flex-wrap: wrap;
     input {
@@ -79,12 +81,7 @@ export const Form = styled.form<FormProps> `
 
         `}
     }
-    /* button {
-      margin-top: 10px;
 
-      width: 100%;
-      border-radius: 5px;
-    } */
   }
 
   `;
@@ -92,6 +89,7 @@ export const Form = styled.form<FormProps> `
 export const Error = styled.span`
     display: block;
     color: #c53030;
+
     margin-top:30px;
   `;
 
@@ -100,8 +98,8 @@ export const Repositories = styled.div`
   margin-top: 30px;
   max-width: 100%;
   a {
-    background: #fff;
-    border-radius: 5px;
+    background:#F7F8F8;
+    border-radius: 15px;
     width: 100%;
     padding: 24px;
     display: block;

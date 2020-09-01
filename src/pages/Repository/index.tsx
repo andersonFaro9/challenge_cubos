@@ -33,7 +33,7 @@ interface Repository {
   popularity: number;
   vote_count: number;
   video : false;
-  vote_average: number;
+  vote_average: string;
 }
 
 interface Issue {
@@ -53,16 +53,13 @@ interface Issue {
 const Repository: React.FC = () => {
   const [repository, setRepository] = useState<Repository | null>(null);
 
-
   const { params } = useRouteMatch<RepositoryParams>();
 
   useEffect(() => {
 
     const api_url = '2bf45dbd029ec4fbc6d4df66adb594c9';
 
-
-
-    api.get(`/search/movie/?api_key=${api_url}&query= ${repository}`).then(response => {
+    api.get(`/search/movie?api_key=${api_url}&query=${repository}`).then(response => {
       setRepository(response.data.results);
       console.log(response.data);
     });
@@ -78,7 +75,8 @@ const Repository: React.FC = () => {
       {repository ? (
         <RepositoryInfo>
           <header>
-            <img src={repository.backdrop_path} alt={repository.backdrop_path} />
+          <img src={`https://image.tmdb.org/t/p/w500/${repository.backdrop_path}`} />
+
             <div>
               <strong>{repository.original_title}</strong>
               <p>{repository.popularity}</p>

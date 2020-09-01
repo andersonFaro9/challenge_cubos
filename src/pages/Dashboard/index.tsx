@@ -80,7 +80,7 @@ const Dashboard: React.FC = () => {
       <Repositories>
         {repositories.map((movie, mv ) => (
           <Link key={mv}
-            to={`/repositories${newSearch}` }>
+            to={"" }>
             <img
               src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
               alt={movie.poster_path}
