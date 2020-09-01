@@ -1,6 +1,4 @@
 import React, { useState, useEffect, FormEvent } from "react";
-import logoImg from '../../assets/virus.svg';
-import theMovieDb from '../../services/api';
 
 import { Form, Repositories, Error } from './styles';
 
@@ -17,6 +15,8 @@ interface Repository {
   original_title: string;
   overview:string;
   title:string;
+  backdrops:string;
+  backdrop_path: string;
 
 
 }
@@ -26,25 +26,13 @@ const Dashboard: React.FC = () => {
 
   const [inputError, setInputError] = useState('');
 
-  const [repositories, setRepositories] = useState<Repository[]>(() => {
-    const storagedRepositories = localStorage.getItem(
-      '@GithubExplorer:repositories',
-    );
-    if (storagedRepositories) {
-      return JSON.parse(storagedRepositories);
-    }
-    return [];
-  });
-
-  useEffect (() => {
-
-  }, [repositories])
+  const [repositories, setRepositories] = useState<Repository[]>([]);
 
   async function searhMovie(event: FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
 
     if (!newSearch) {
-      setInputError('Adicione um repositório');
+      setInputError('Digite o nome do filme');
       return;
     }
 
@@ -52,14 +40,13 @@ const Dashboard: React.FC = () => {
     try {
       const api_url = '2bf45dbd029ec4fbc6d4df66adb594c9';
 
-      const response = await api.get<Repository>(`/search/movie?api_key=${api_url}&query= ${newSearch}`);
+      const response = await api.get(`/search/movie?api_key=${api_url}&query= ${newSearch}`);
 
-      const repository = response.data;
+      const repository = response.data.results;
 
-        setRepositories([...repositories, repository]);
+        setRepositories(repository);
         setNewSearch('');
         setInputError('');
-
         console.log(repository);
 
     }
@@ -76,7 +63,9 @@ const Dashboard: React.FC = () => {
       <Header>Movies</Header>
 
       <Form hasError={!!inputError} onSubmit={searhMovie} >
+
         <input
+
           value={newSearch}
           onChange={(e) => setNewSearch(e.target.value)}
           placeholder="
@@ -89,16 +78,17 @@ const Dashboard: React.FC = () => {
 
 
       <Repositories>
-        {repositories.map((movie, i) => (
-          <Link key={i}
-            to={`/search/movies/${newSearch}` }>
+        {repositories.map((movie, mv ) => (
+          <Link key={mv}
+            to={`/repositories${newSearch}` }>
             <img
-              src={movie.poster_path}
+              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
               alt={movie.poster_path}
             />
             <div>
-              <p>{movie.poster_path}</p>
-              <p>{movie.poster_path}</p>
+              <p className= "original_title">{movie.original_title}</p>
+              <p>{movie.release_date}</p>
+              <p>{movie.overview}</p>
             </div>
             <FiChevronRight size={20} />
           </Link>

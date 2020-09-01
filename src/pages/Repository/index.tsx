@@ -52,7 +52,7 @@ interface Issue {
 
 const Repository: React.FC = () => {
   const [repository, setRepository] = useState<Repository | null>(null);
-  //const [issues, setIssues] = useState<Issue[]>([]);
+
 
   const { params } = useRouteMatch<RepositoryParams>();
 
@@ -61,8 +61,9 @@ const Repository: React.FC = () => {
     const api_url = '2bf45dbd029ec4fbc6d4df66adb594c9';
 
 
+
     api.get(`/search/movie/?api_key=${api_url}&query= ${repository}`).then(response => {
-      setRepository(response.data);
+      setRepository(response.data.results);
       console.log(response.data);
     });
 

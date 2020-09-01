@@ -54,7 +54,7 @@ export const Form = styled.form<FormProps> `
       font-size: 18px;
     }
   }
-  /* button {
+   button {
     width : 210px;
     height: 70px;
     background: #1E90FF;
@@ -64,7 +64,7 @@ export const Form = styled.form<FormProps> `
     &:hover {
       background: ${shade(0.2, '#1E90FF')};
     }
-  } */
+  }
   @media (max-width: 600px) {
     flex-wrap: wrap;
     input {
@@ -79,12 +79,12 @@ export const Form = styled.form<FormProps> `
 
         `}
     }
-    button {
+    /* button {
       margin-top: 10px;
 
       width: 100%;
       border-radius: 5px;
-    }
+    } */
   }
 
   `;
@@ -96,8 +96,9 @@ export const Error = styled.span`
   `;
 
 export const Repositories = styled.div`
-  margin-top: 80px;
-  max-width: 700px;
+
+  margin-top: 30px;
+  max-width: 100%;
   a {
     background: #fff;
     border-radius: 5px;
@@ -129,16 +130,23 @@ export const Repositories = styled.div`
       margin: 0 16px;
       flex: 1;
 
-      strong {
-        font-size:20px;
+      .original_title {
+        font-size:   17px;
+        flex: 1;
+        display: flex;
         color : #3D3D4D;
+        font-family: "Abel", "Lato",Arial, Helvetica, sans-serif;
       }
 
       p{
-        font-size:   18px;
-        color : #a8a8b3;
+        flex: 1;
+        display: flex;
+        font-size:   15px;
+        color : #535361;
+        text-align: left;
         margin-top: 4px;
       }
+
 
     }
 
