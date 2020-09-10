@@ -21,7 +21,6 @@ const Dashboard: React.FC = () => {
   const [inputError, setInputError] = useState('');
 
   const [movies, setMovies] = useState<IProperties[]>([]);
-  const [page, total_results, total_pages] = useState();
 
   async function searhMovie(event: FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
@@ -78,7 +77,7 @@ const Dashboard: React.FC = () => {
           </Link>
         ))}
       </Films>
-      <Pagination> </Pagination>
+      <div>teste</div>
     </>
   );
 };
