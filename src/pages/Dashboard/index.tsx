@@ -13,6 +13,7 @@ interface IProperties {
   release_date: string;
   original_title: string;
   overview: string;
+
   backdrops: string;
 }
 const Dashboard: React.FC = () => {
@@ -34,8 +35,9 @@ const Dashboard: React.FC = () => {
       const api_url = '2bf45dbd029ec4fbc6d4df66adb594c9';
 
       const response = await api.get(
-        `movie/popular?api_key=${api_url}&page=1`,
-        // `/search/movie?api_key=${api_url}&query= ${newSearch}`,
+        `search/movie?api_key=${api_url}&query=${newSearch}`,
+
+        // `movie/popular?api_key=${api_url}&page=1`,
       );
 
       const { results } = response.data;
@@ -62,22 +64,21 @@ const Dashboard: React.FC = () => {
       </Form>
       {inputError && <Error>{inputError}</Error>}
       <Films>
-        {movies.map((movie, mv) => (
-          <Link key={mv} to={''}>
+        {movies.map(mv => (
+          <Link key={mv.original_title} to={`/details/${mv.original_title}`}>
             <img
-              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-              alt={movie.poster_path}
+              src={`https://image.tmdb.org/t/p/w500/${mv.poster_path}`}
+              alt={mv.poster_path}
             />
             <div>
-              <p className="original_title">{movie.original_title}</p>
-              <p>{movie.release_date}</p>
-              <p>{movie.overview}</p>
+              <p className="original_title">{mv.original_title}</p>
+              <p>{mv.release_date}</p>
+              <p>{mv.overview}</p>
             </div>
             <FiChevronRight size={20} />
           </Link>
         ))}
       </Films>
-      <div>teste</div>
     </>
   );
 };
