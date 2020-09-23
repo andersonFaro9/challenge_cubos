@@ -3,46 +3,32 @@ import { useRouteMatch } from 'react-router-dom';
 
 import api from '../../services/api';
 
-interface IFilmes {
-  poster_path: string;
-
-  adult: false;
-  release_date: string;
-  original_title: string;
-  overview: string;
+interface MovieParams {
+  id: string;
 }
 
-interface DetailsParams {
-  details: string;
-}
+const Details: React.FC = () => {
+  // const [films, setFilms] = useState<IFilmes | null>(null);
 
-const Details: React.FC = movieId => {
-  const [films, setFilms] = useState<IFilmes | null>(null);
-
-  const { params } = useRouteMatch<DetailsParams>();
+  const { params } = useRouteMatch<MovieParams>();
 
   const fetchDate = useCallback(async () => {
     try {
       const api_url = '2bf45dbd029ec4fbc6d4df66adb594c9';
 
-      api.get(`/movie/${movieId}?api_key = ${api_url}`).then(response => {
-        const { results } = response.data;
-        console.log(results);
+      api.get(`/movie/${params.id}?api_key=${api_url}`).then(response => {
+        console.log(response.data);
       });
     } catch {
       console.log('error');
     }
-  }, [movieId]);
+  }, [params.id]);
 
   useEffect(() => {
     fetchDate();
   });
 
-  return (
-    <>
-      <h1>teste {films?.overview}</h1>
-    </>
-  );
+  return <> {/* <h1>teste {films?.overview}</h1> */}</>;
 };
 
 export default Details;

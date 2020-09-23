@@ -65,7 +65,7 @@ const Dashboard: React.FC = () => {
       {inputError && <Error>{inputError}</Error>}
       <Films>
         {movies.map(mv => (
-          <Link key={mv.original_title} to={`/details/${mv.original_title}`}>
+          <Link key={mv.original_title} to={`/details/${mv.id}`}>
             <img
               src={`https://image.tmdb.org/t/p/w500/${mv.poster_path}`}
               alt={mv.poster_path}
