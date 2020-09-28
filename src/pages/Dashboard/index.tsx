@@ -1,8 +1,9 @@
-import React, { useState, FormEvent, useEffect } from 'react';
+import React, { useState, FormEvent } from 'react';
 
 import { FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import { Form, Films, Error } from './styles';
+
+import { Form, Films, Container, Error } from './styles';
 import api from '../../services/api';
 import Header from '../../components/Header/styles';
 
@@ -13,8 +14,7 @@ interface IProperties {
   release_date: string;
   original_title: string;
   overview: string;
-
-  backdrops: string;
+  vote_average: number;
 }
 const Dashboard: React.FC = () => {
   const [newSearch, setNewSearch] = useState('');
@@ -27,7 +27,9 @@ const Dashboard: React.FC = () => {
     event.preventDefault();
 
     if (!newSearch) {
-      setInputError('Digite o nome do filme');
+      setInputError(
+        'Não foram encontrados filmes que correspondam aos seus critérios de busca.',
+      );
       return;
     }
 
@@ -47,38 +49,43 @@ const Dashboard: React.FC = () => {
       setInputError('');
       console.log(results);
     } catch {
-      setInputError('Tente novamente');
+      setInputError(
+        'Ops! Problema com a conexão ou o filme não existe, tente novamente por favor',
+      );
     }
   }
 
   return (
     <>
-      <Header>Movies</Header>
-      <Form hasError={!!inputError} onSubmit={searhMovie}>
-        <input
-          value={newSearch}
-          onChange={e => setNewSearch(e.target.value)}
-          placeholder="
-           Busque um filme por nome ano ou gênero..."
-        />
-      </Form>
-      {inputError && <Error>{inputError}</Error>}
-      <Films>
-        {movies.map(mv => (
-          <Link key={mv.original_title} to={`/details/${mv.id}`}>
-            <img
-              src={`https://image.tmdb.org/t/p/w500/${mv.poster_path}`}
-              alt={mv.poster_path}
-            />
-            <div>
-              <p className="original_title">{mv.original_title}</p>
-              <p>{mv.release_date}</p>
-              <p>{mv.overview}</p>
-            </div>
-            <FiChevronRight size={20} />
-          </Link>
-        ))}
-      </Films>
+      <Container>
+        <Header>Movies</Header>
+        <Form hasError={!!inputError} onSubmit={searhMovie}>
+          <input
+            value={newSearch}
+            onChange={e => setNewSearch(e.target.value)}
+            placeholder="Busque um filme por nome, ano ou gênero..."
+          />
+        </Form>
+        {inputError && <Error>{inputError}</Error>}
+        <Films>
+          {movies.map(mv => (
+            <Link key={mv.original_title} to={`/details/${mv.id}`}>
+              <img
+                src={`https://image.tmdb.org/t/p/w300/${mv.poster_path}`}
+                alt={mv.poster_path}
+              />
+              <div>
+                <p className="original_title">{mv.original_title}</p>
+                <p className="release_date">{mv.release_date}</p>
+                <p className="vote_average">{mv.vote_average * 10} %</p>
+                <p className="overview">{mv.overview}</p>
+              </div>
+
+              <FiChevronRight size={20} />
+            </Link>
+          ))}
+        </Films>
+      </Container>
     </>
   );
 };

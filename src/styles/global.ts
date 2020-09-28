@@ -12,6 +12,8 @@ export default createGlobalStyle`
     background: #FFFF;
     -webkit-font-smoothing: antialiased;
 
+
+
   }
 
   body , button, input{
@@ -19,10 +21,10 @@ export default createGlobalStyle`
 
   }
 
-  #root {
+  /* #root {
     flex: 1;
     text-align:center;
     max-width: 960px;
     margin: 0 auto;
-  }
+  } */
 `;
