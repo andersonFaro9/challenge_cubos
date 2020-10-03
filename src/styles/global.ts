@@ -2,29 +2,25 @@ import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
 
-  * {
+* {
     margin: 0;
     padding: 0;
-    outline: 0;
     box-sizing: border-box;
-  }
-  body{
-    background: #FFFF;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
-
-
+    &::before,
+    &::after {
+      box-sizing:inherit;
+    }
   }
 
-  body , button, input{
-    font: 22px  Abel, Lato, sans-serif;
-
+  body {
+    font-family: Abel, Lato, sans-serif;
+    background: #FFFF;
   }
 
-  /* #root {
-    flex: 1;
-    text-align:center;
-    max-width: 960px;
-    margin: 0 auto;
-  } */
+  body, button, input{
+    font-size: 22px;
+  }
 `;

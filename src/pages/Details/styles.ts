@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
 export const Movies = styled.div`
+  display: flex;
   flex: 1;
   max-width: 100%;
   height: 100%;
-  display: flex;
-
   background: blue;
   padding: 0 14rem;
 `;
@@ -30,6 +29,7 @@ export const Texts = styled.div`
     font-size: 2.2rem;
     color: whitesmoke;
   }
+
   .original_title > span {
     color: whitesmoke;
     opacity: 0.8;
@@ -40,7 +40,6 @@ export const Texts = styled.div`
 
   .vote_average {
     flex: 1;
-
     font-size: 15px;
     color: whitesmoke;
     width: 70px;
@@ -75,4 +74,16 @@ export const Texts = styled.div`
     margin-left: 1rem;
     padding-top: 1rem;
   }
+`;
+
+export const Genres = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: flex-start;
+  align-items: flex-end;
+  margin-right: 1rem;
+  padding-bottom: 1rem;
+  color: whitesmoke;
+  font-weight: 900;
 `;
