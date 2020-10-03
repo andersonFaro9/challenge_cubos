@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, FormEvent, useCallback } from 'react';
 
 import { FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
@@ -15,13 +15,21 @@ interface IProperties {
   original_title: string;
   overview: string;
   vote_average: number;
+  name: string;
 }
+
+interface IGenres {
+  id: string;
+  name: string;
+}
+
 const Dashboard: React.FC = () => {
   const [newSearch, setNewSearch] = useState('');
 
   const [inputError, setInputError] = useState('');
 
   const [movies, setMovies] = useState<IProperties[]>([]);
+  const [genres, setGenres] = useState<IGenres[]>([]);
 
   async function searhMovie(event: FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
@@ -35,19 +43,27 @@ const Dashboard: React.FC = () => {
 
     try {
       const api_url = '2bf45dbd029ec4fbc6d4df66adb594c9';
+      const language = 'language=pt-br';
 
-      const response = await api.get(
-        `search/movie?api_key=${api_url}&query=${newSearch}`,
-
-        // `movie/popular?api_key=${api_url}&page=1`,
+      // Aqui mostra os filmes com seus detalhes, titulo, e imagem
+      const films = await api.get(
+        `search/movie?api_key=${api_url}&query=${newSearch}  `,
       );
 
-      const { results } = response.data;
+      // setMovies(films.data.results);
 
-      setMovies(results);
+      // Aqui deve trazer o gênero do filme, e mostrar no front-end mas não traz, no momento, ele traz pelo console.log()
+      const gen = await api.get(
+        `/genre/movie/list?api_key=${api_url}&${language}`,
+      );
+
+      setGenres(gen.data);
+      setMovies(films.data.results);
       setNewSearch('');
       setInputError('');
-      console.log(results);
+
+      console.log(films.data.results);
+      console.log(gen.data);
     } catch {
       setInputError(
         'Ops! Problema com a conexão ou o filme não existe, tente novamente por favor',
@@ -79,8 +95,12 @@ const Dashboard: React.FC = () => {
                 <p className="release_date">{mv.release_date}</p>
                 <p className="vote_average">{mv.vote_average * 10} %</p>
                 <p className="overview">{mv.overview}</p>
-              </div>
 
+                <p className="original_title">
+                  {genres.find(genre => genre.id === mv.id)?.name}
+                </p>
+              </div>
+              {<div>{/*  Aqui o gênero deve apar    ecer} */}</div>}
               <FiChevronRight size={20} />
             </Link>
           ))}
