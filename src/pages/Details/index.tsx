@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useRouteMatch } from 'react-router-dom';
+import { parseISO, format } from 'date-fns';
 import { Movies, Images, Texts } from './styles';
 import api from '../../services/api';
 
-interface IMovieParams {
+interface MovieProps {
   id: string;
-}
-
-interface IMovie {
   poster_path: string;
   adult: false;
   release_date: string;
@@ -17,84 +15,68 @@ interface IMovie {
   title: string;
   certification: string;
   original_language: string;
+  budget: string;
+  genres: Genre[];
 }
 
-interface IGenre {
-  genre: string;
+type Genre = {
   id: number;
   name: string;
-}
+};
+
+type MovieParams = Pick<MovieProps, 'id'>;
+
 const Details: React.FC = () => {
-  const { params } = useRouteMatch<IMovieParams>();
+  const [films, setFilms] = useState<MovieProps>();
+  const { params } = useRouteMatch<MovieParams>();
 
-  const api_key = '2bf45dbd029ec4fbc6d4df66adb594c9';
-  const language = 'language=pt-br';
+  const loadMovie = useCallback(async () => {
+    const api_url = '2bf45dbd029ec4fbc6d4df66adb594c9';
+    const language = 'language=pt-br';
 
-  const [movies, setMoviesDetails] = useState<IMovie>();
-  const [genres, setGenres] = useState<IGenre>();
-
-  //  Traz os detalhes do filme
-  const getMovies = useCallback(async () => {
-    const response = await api.get(`/movie/${params.id}?api_key=${api_key}`);
-
-    setMoviesDetails(response.data);
-    // console.log(response.data);
-  }, [params.id]);
-
-  // Deve trazer o genero do filme
-  const getGenres = useCallback(async () => {
-    const response = await api.get(
-      `/genre/movie/list?api_key=${api_key}&${language}`,
+    const { data } = await api.get(
+      `/movie/${params.id}?api_key=${api_url}&${language}`,
     );
 
-    setGenres(response.data);
-    console.log(response.data);
-  }, []);
+    setFilms(data);
+    console.log(data);
+  }, [params.id]);
 
   useEffect(() => {
-    getMovies();
-    getGenres();
-  }, [getMovies, getGenres]);
+    loadMovie();
+  }, [loadMovie]);
 
   return (
     <>
-      {movies ? (
+      {films ? (
         <Movies>
           <Images>
             <div>
               <img
-                src={`https://image.tmdb.org/t/p/w300/${movies?.poster_path}`}
-                alt={movies?.poster_path}
+                src={`https://image.tmdb.org/t/p/w300/${films?.poster_path}`}
+                alt={films?.poster_path}
               />
             </div>
           </Images>
           <Texts>
             <div className="original_title">
-              {movies?.original_title}
+              {films?.original_title}
               <span>
-                {movies?.release_date} ({movies?.original_language})
+                {format(parseISO(`${films.release_date}`), 'dd/MM/yyyy')} (
+                {films?.original_language})
               </span>
             </div>
             <div className="teste">
-              Avaliação dos usuários ({movies?.vote_average * 10}% )
+              Avaliação dos usuários ({films?.vote_average * 10}% )
             </div>
             <h2>Sipnose:</h2>
-            <div className="overview">{movies?.overview}</div>
-            <div>
-              {genres ? (
-                <p className="original_title">{genres.name}</p>
-              ) : (
-                <h1>ddd</h1>
-              )}
+            <div className="overview">{films?.overview}</div>
+
+            <div className="genres">
+              {films.genres.map(genre => (
+                <p key={genre.id}> {genre.name} </p>
+              ))}
             </div>
-            {/* {genres.length > 0 &&
-              genres.map(mv => (
-                <div key={mv.id}>
-                  <div>
-                    <p className="original_title">{mv.name}</p>
-                  </div>
-                </div>
-              ))} */}
           </Texts>
         </Movies>
       ) : (

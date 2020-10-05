@@ -75,4 +75,14 @@ export const Texts = styled.div`
     margin-left: 1rem;
     padding-top: 1rem;
   }
+
+  .genres {
+    /* font-size: 16px; */
+    display: flex;
+    flex-direction: row;
+    width: 350px;
+    color: whitesmoke;
+    margin-left: 1rem;
+    padding-top: 1rem;
+  }
 `;
