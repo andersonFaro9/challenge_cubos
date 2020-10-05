@@ -78,9 +78,13 @@ export const Texts = styled.div`
 
   .genres {
     /* font-size: 16px; */
+
     display: flex;
-    flex-direction: row;
-    width: 350px;
+    flex-wrap: wrap;
+    justify-content: start;
+    max-width: 300px;
+
+    justify-content: space-between;
     color: whitesmoke;
     margin-left: 1rem;
     padding-top: 1rem;
