@@ -7,7 +7,7 @@ import { Genry, Container, Sinopse, DetailsFilms, Percentage } from './styles';
 import api from '../../services/api';
 import Header from '../../components/Header/styles';
 
-import thor2 from '../../assets/thor2.jpg';
+// import thor2 from '../../assets/thor2.jpg';
 
 const Details: React.FC = () => {
   return (
@@ -72,7 +72,7 @@ const Details: React.FC = () => {
           </Genry>
         </div>
 
-        <img src={thor2} />
+        {/* <img src={thor2} /> */}
       </Sinopse>
     </Container>
   );

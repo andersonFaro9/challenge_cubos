@@ -12,7 +12,7 @@ export default createGlobalStyle`
   body{
     background: #FFFF;
     -webkit-font-smoothing: antialiased;
-
+    overflow-x: hidden;
 
   }
 
