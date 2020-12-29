@@ -1,12 +1,45 @@
 import styled from 'styled-components';
 
-const Container = styled.div`
-  background-color: #116193;
-  border-radius: 2px;
-  color: #3dc0cc;
-  font-size: 3.8rem;
-  padding-top: 1.6rem;
-  width: 100%;
-  text-align: center;
-  height: 9rem;
+const Teste = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3%;
+
+  nav .page-link {
+    border: 3px solid #116193;
+    border-radius: 50px;
+    width: 65px;
+    height: 65px;
+    float: left;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+
+  nav .page-link span {
+    font-size: 25px;
+    color: #03ced5;
+    background: #116193;
+    border: 4px solid #03ced5;
+    border-radius: 50px;
+    width: 100%;
+    height: 100%;
+    float: left;
+    line-height: 50px;
+    text-align: center;
+  }
+
+  nav .page-item {
+    margin-right: 25px;
+    cursor: pointer;
+  }
+
+  nav .page-item span {
+    font-size: 25px;
+    color: #116193;
+    width: 100%;
+    line-height: 60px;
+    text-align: center;
+  }
 `;
+export default Teste;

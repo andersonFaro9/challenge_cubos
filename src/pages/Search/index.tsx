@@ -10,6 +10,7 @@ import image from '../../assets/no-image2.svg';
 import Header from '../../components/Header/styles';
 import api from '../../services/api';
 import fail from '../../assets/internet.svg';
+import Teste from '../../components/Pagination/styles';
 import Pagination from '../../components/Pagination/Pagination';
 
 interface ISearchProps {
@@ -42,11 +43,12 @@ const Search: React.FC = () => {
   const [inputError, setInputError] = useState('');
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [moviesPerPage] = useState(5);
+  const [pageNumbers] = useState([]);
+  const [moviesPerPage] = useState(4);
 
-  const paginate = (pageNumber: number) => {
+  function paginate(pageNumber: number) {
     return setCurrentPage(pageNumber);
-  };
+  }
 
   const formatGenre = (id: string): string | undefined => {
     const result = genres.find(genre => genre.id === id);
