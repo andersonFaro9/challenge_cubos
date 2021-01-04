@@ -1,8 +1,8 @@
-import React, { useState, FormEvent, useEffect } from 'react';
+import React, { useState, FormEvent } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { parseISO, format } from 'date-fns';
+// import { parseISO, format } from 'date-fns';
 
 import { Form, Info, Footer, Genry, Container } from './styles';
 import image from '../../assets/no-image2.svg';
@@ -10,7 +10,7 @@ import image from '../../assets/no-image2.svg';
 import Header from '../../components/Header/styles';
 import api from '../../services/api';
 import fail from '../../assets/internet.svg';
-import Teste from '../../components/Pagination/styles';
+// import Teste from '../../components/Pagination/styles';
 import Pagination from '../../components/Pagination/Pagination';
 
 interface ISearchProps {
@@ -43,7 +43,7 @@ const Search: React.FC = () => {
   const [inputError, setInputError] = useState('');
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageNumbers] = useState([]);
+
   const [moviesPerPage] = useState(4);
 
   function paginate(pageNumber: number) {
@@ -80,7 +80,10 @@ const Search: React.FC = () => {
       setLoading(false);
 
       setMovies(response.data.results);
+
       setGenres(genres.data.genres);
+      console.log(genres.data.genres);
+
       setInputError('');
 
       setNewSearch('');

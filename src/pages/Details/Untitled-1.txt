@@ -1,0 +1,5 @@
+{
+    movies?.budget
+      .toLocaleString('pt-Br', { style: 'currency', currency: 'USD' })
+      .split('US')[1]
+  }

@@ -1,5 +1,5 @@
 import React from 'react';
-import Teste from './styles';
+import Page from './styles';
 
 interface IPagination {
   moviesPerPage: number;
@@ -14,7 +14,7 @@ const Pagination: React.FC<IPagination> = (page: IPagination) => {
   }
 
   return (
-    <Teste>
+    <Page>
       <nav>
         {pageNumbers.map(number => (
           <div
@@ -26,7 +26,7 @@ const Pagination: React.FC<IPagination> = (page: IPagination) => {
           </div>
         ))}
       </nav>
-    </Teste>
+    </Page>
   );
 };
 export default Pagination;

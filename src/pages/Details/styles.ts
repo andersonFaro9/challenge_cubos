@@ -14,10 +14,8 @@ export const DetailsFilms = styled.div`
   margin-top: 4rem;
   width: 106rem;
   background-color: #e6e6e6;
-
   div.title-film {
     color: #116193;
-
     font-weight: 550;
     font-size: 3.4rem;
     height: 6rem;
@@ -36,7 +34,6 @@ export const DetailsFilms = styled.div`
       position: absolute;
     }
   }
-
   div.date {
     font-size: 2.1rem;
     padding-top: 2rem;
@@ -57,13 +54,11 @@ export const Sinopse = styled.div`
   justify-items: center;
   align-items: flex-start;
   width: 106rem;
-
   div.film {
     padding-top: 0.1rem;
     padding-left: 4rem;
     padding-right: 3rem;
     text-align: left;
-
     div.overview {
       margin-top: 1rem;
       font-size: 1.8rem;
@@ -71,19 +66,16 @@ export const Sinopse = styled.div`
       width: 69rem;
       font-weight: bold;
     }
-
     @media (max-width: 1170px) {
       div.overview {
         width: 61rem;
       }
     }
-
     @media (max-width: 1040px) {
       div.overview {
         width: 50rem;
       }
     }
-
     @media (max-width: 1030px) {
       div.overview {
         width: 42rem;
@@ -94,7 +86,6 @@ export const Sinopse = styled.div`
         width: 38rem;
       }
     }
-
     @media (max-width: 1000px) {
       div.overview {
         width: 71rem;
@@ -107,7 +98,6 @@ export const Sinopse = styled.div`
         font-size: 2rem;
       }
     }
-
     @media (max-width: 880px) {
       div.overview {
         width: 54rem;
@@ -120,7 +110,6 @@ export const Sinopse = styled.div`
         font-size: 2rem;
       }
     }
-
     p.title {
       text-align: left;
       padding-top: 1.8rem;
@@ -130,10 +119,8 @@ export const Sinopse = styled.div`
       font-size: 2.5rem;
       border-bottom: 2px solid #00ffff;
     }
-
     }
   }
-
   @media (max-width: 1000px) {
     ul.film {
       flex-direction: column;
@@ -145,14 +132,12 @@ export const Sinopse = styled.div`
       display: none;
     }
   }
-
   ul.list-film {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     margin-top: 1rem;
   }
-
   @media (max-width: 1044px) {
     ul.list-film {
       display: flex;
@@ -163,19 +148,16 @@ export const Sinopse = styled.div`
       width: 20em;
     }
   }
-
   @media (max-width: 1040px) {
     ul.list-film {
       width: 43rem;
     }
   }
-
   @media(max-width: 1000px) {
     ul.list-film {
       width: 22em;
     }
   }
-
   li.lucre {
     padding-right: 4rem;
   }
@@ -185,14 +167,12 @@ export const Sinopse = styled.div`
     font-weight: 550;
     font-size: 1.9rem;
   }
-
   p.items {
     font-size: 1.4rem;
     text-align: center;
     color: #595959;
     font-weight: bold;
   }
-
   @media (max-width: 1243px) {
     img {
       order: -1;
@@ -207,7 +187,6 @@ export const Genry = styled.div`
     display: flex;
     align-items: center;
     justify-items: space-around;
-
     li {
       list-style: none;
       border: 2px solid #b0c8d6;
@@ -216,7 +195,6 @@ export const Genry = styled.div`
       height: 2.9rem;
       margin-right: 1rem;
       background-color: white;
-
       p {
         font-size: 15px;
         color: #116193;
@@ -242,14 +220,12 @@ export const Percentage = styled.div`
     border-color: #116193;
     background-color: #116193;
   }
-
   @media (max-width: 1044px) {
     div.number {
       margin-left: 0rem;
       margin-top: 2rem;
     }
   }
-
   div.value {
     text-align: center;
     background-color: #116193;

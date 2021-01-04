@@ -1,23 +1,26 @@
 import styled from 'styled-components';
 
-const Teste = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 3%;
+const Page = styled.div`
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
 
   nav .page-link {
     border: 3px solid #116193;
     border-radius: 50px;
-    width: 65px;
-    height: 65px;
+    width: 55px;
+    height: 55px;
     float: left;
     margin-right: 20px;
     cursor: pointer;
   }
 
   nav .page-link span {
-    font-size: 25px;
+    font-size: 30px;
+    line-height: 40px;
     color: #03ced5;
     background: #116193;
     border: 4px solid #03ced5;
@@ -25,7 +28,7 @@ const Teste = styled.div`
     width: 100%;
     height: 100%;
     float: left;
-    line-height: 50px;
+
     text-align: center;
   }
 
@@ -42,4 +45,4 @@ const Teste = styled.div`
     text-align: center;
   }
 `;
-export default Teste;
+export default Page;
