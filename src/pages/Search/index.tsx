@@ -1,8 +1,8 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, FormEvent, useCallback } from 'react';
 
 import { Link } from 'react-router-dom';
 
-// import { parseISO, format } from 'date-fns';
+import { parseISO, format } from 'date-fns';
 
 import { Form, Info, Footer, Genry, Container } from './styles';
 import image from '../../assets/no-image2.svg';
@@ -10,30 +10,14 @@ import image from '../../assets/no-image2.svg';
 import Header from '../../components/Header/styles';
 import api from '../../services/api';
 import fail from '../../assets/internet.svg';
-// import Teste from '../../components/Pagination/styles';
+import { ISearchMovieProps } from '../../helpers/ISearchMovieProps';
+import { IGenres } from '../../helpers/IGenres';
+
 import Pagination from '../../components/Pagination/Pagination';
-
-interface ISearchProps {
-  id: string;
-  genre_ids: [];
-  poster_path: string;
-  release_date: string;
-  original_title: string;
-  overview: string;
-  vote_average: number;
-  title: string;
-  original_language: string;
-  budget: string;
-}
-
-interface IGenres {
-  id: string;
-  name: string;
-}
 
 const Search: React.FC = () => {
   const [newSearch, setNewSearch] = useState('');
-  const [movies, setMovies] = useState<ISearchProps[]>([]);
+  const [movies, setMovies] = useState<ISearchMovieProps[]>([]);
 
   const [genres, setGenres] = useState<IGenres[]>([]);
 
@@ -46,21 +30,24 @@ const Search: React.FC = () => {
 
   const [moviesPerPage] = useState(4);
 
-  function paginate(pageNumber: number) {
+  const paginate = (pageNumber: number) => {
     return setCurrentPage(pageNumber);
-  }
-
-  const formatGenre = (id: string): string | undefined => {
-    const result = genres.find(genre => genre.id === id);
-    return result ? result.name : undefined;
   };
 
-  const formatDate = (date: string) => {
+  const formatGenre = useCallback(
+    (id?: string) => {
+      const result = genres.find(genre => genre.id === id);
+      return result ? result.name : undefined;
+    },
+    [genres],
+  );
+
+  const formatDate = useCallback((date?: string) => {
     if (date) {
       const [year, month, day] = date.split('-');
       return `${day}/${month}/${year}`;
     }
-  };
+  }, []);
 
   async function handleSubmit(
     event: FormEvent<HTMLFormElement>,
@@ -82,7 +69,6 @@ const Search: React.FC = () => {
       setMovies(response.data.results);
 
       setGenres(genres.data.genres);
-      console.log(genres.data.genres);
 
       setInputError('');
 
@@ -136,7 +122,7 @@ const Search: React.FC = () => {
                 <div className="date">
                   {formatDate(`${movie.release_date}`)}
 
-                  {/* {format(parseISO(`${movie.release_date}`), 'dd/MM/yyyy')} */}
+                  {format(parseISO(`${movie.release_date}`), 'dd/MM/yyyy')}
                 </div>
 
                 {!movie.overview ? (
