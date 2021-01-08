@@ -2,13 +2,12 @@ import React, { useState, useEffect, useCallback } from 'react';
 
 import { useRouteMatch } from 'react-router-dom';
 
-// import { parseISO, format } from 'date-fns';
-import format from 'date-fns/format';
+import { parseISO, format } from 'date-fns';
 
 import { Genry, Container, Sinopse, DetailsFilms, Percentage } from './styles';
 import api from '../../services/api';
 import Header from '../../components/Header/styles';
-import image from '../../assets/no-image2.svg';
+import image from '../../assets/no-photo.svg';
 
 import convertMoney from '../../helpers/helpers';
 import { ITrailer } from './interfaces/ITrailer';
@@ -22,15 +21,16 @@ type IMatchProps = {
 };
 
 const Details: React.FC = () => {
-  const [movie, setMovie] = useState<ISearchMovieProps>();
+  const [movie, setMovies] = useState<ISearchMovieProps | null>(null);
 
-  const [trailer, setTrailer] = useState<ITrailer[]>([]);
+  const [trailers, setTrailer] = useState<ITrailer[]>([]);
 
   const [genres, setGenres] = useState<IGenres[]>([]);
   const [languages, setLanguage] = useState<ILanguage[]>([]);
   const language = 'language=pt-BR';
 
   const token = '2bf45dbd029ec4fbc6d4df66adb594c9';
+  const videosresponse = 'append_to_response=videos';
 
   const { params } = useRouteMatch<IMatchProps>();
 
@@ -40,23 +40,21 @@ const Details: React.FC = () => {
     async function loadMovie() {
       try {
         setLoading(true);
+
         const response = await api.get(
-          `movie/${params.id}?api_key=${token}&${language}&append_to_response=videos`,
+          `movie/${params.id}?api_key=${token}&${language}&${videosresponse}`,
         );
 
-        setMovie(response.data);
+        setMovies(response.data);
 
         setGenres(response.data.genres);
         setLanguage(response.data.spoken_languages);
         setTrailer(response.data.videos.results);
-
-        console.log(response.data.videos.results);
       } catch (err) {
       } finally {
         setLoading(false);
       }
     }
-
     loadMovie();
   }, [params.id]);
 
@@ -65,28 +63,34 @@ const Details: React.FC = () => {
 
     if (result.length === 3) {
       result = result.replace(/([0-9]{2})$/g, 'h $1');
-      return result;
+      return `${result} min`;
     }
+    return 'Sem informações';
   }, []);
 
-  const formatDate = useCallback((date?: string) => {
-    if (date) {
-      const [year, month, day] = date.split('-');
-      return `${day}/${month}/${year}`;
-    }
-  }, []);
+  if (!movie) {
+    return <div>carregando informações...</div>;
+  }
 
   return (
     <Container>
       <Header>Movies</Header>
       <DetailsFilms>
         <div className="title-film">{movie?.title}</div>
-        <div className="date">{formatDate(`${movie?.release_date}`)}</div>
+        <div className="date">
+          {movie?.release_date &&
+            format(parseISO(movie.release_date), 'dd/MM/yyyy')}
+        </div>
       </DetailsFilms>
       <Sinopse>
         <div className="film">
           <p className="title">Sinopse</p>
-          <div className="overview">{movie?.overview}</div>
+
+          {!movie.overview ? (
+            <p className="no-info">Sinopse indisponível!!</p>
+          ) : (
+            <div className="sinopse">{movie.overview}</div>
+          )}
         </div>
         <p className="title">Informações</p>
         <ul className="list-film">
@@ -101,37 +105,37 @@ const Details: React.FC = () => {
 
           <li>
             <h2>Idioma</h2>
-            {languages.map(lg => (
-              <div key={lg.iso_639_1}>
-                {lg.name === 'English' ? 'Inglês' : 'Português'}
+            {languages.map(lang => (
+              <div key={lang.iso_639_1}>
+                {lang.name === 'English' ? 'Inglês' : 'Português'}
               </div>
             ))}
           </li>
           <li>
             Duração
-            {formatTime(movie?.runtime)
-              ? `${formatTime(movie?.runtime)}min`
-              : 'Sem informação'}
+            <span>
+              {movie?.runtime ? formatTime(movie?.runtime) : 'Sem informação'}
+            </span>
           </li>
           <li>
             <h2>Orçamento</h2>
-            {convertMoney(movie?.budget)
-              ? convertMoney(movie?.budget)
-              : 'Sem informação'}
+            <span>
+              {movie?.budget ? convertMoney(movie?.budget) : 'Sem informação'}
+            </span>
           </li>
           <li>
             <h2>Receita</h2>
-
-            {convertMoney(movie?.revenue)
-              ? convertMoney(movie?.revenue)
-              : 'Sem informação'}
+            <span>
+              {movie?.revenue ? convertMoney(movie?.revenue) : 'Sem informação'}
+            </span>
           </li>
           <li>
             <h2>Lucro</h2>
-            <br />
-            {convertMoney(movie?.budget)
-              ? convertMoney(movie?.budget! - movie?.revenue!)
-              : 'Sem informação'}
+            <span>
+              {movie?.revenue - movie?.budget
+                ? convertMoney(movie?.revenue - movie?.budget)
+                : 'Sem informação'}
+            </span>
           </li>
         </ul>
       </Sinopse>
@@ -141,7 +145,9 @@ const Details: React.FC = () => {
         ))}
         <Percentage>
           <div className="popularity">
-            {movie?.vote_average ? movie?.vote_average! * 10 : 'Sem informação'}{' '}
+            {movie?.vote_average
+              ? `${movie?.vote_average * 10}%`
+              : 'Sem informação'}
           </div>
         </Percentage>
       </Genry>
@@ -157,7 +163,7 @@ const Details: React.FC = () => {
         <h2>Aguardando carregamento de dados...</h2>
       ) : (
         <div>
-          {trailer.map(tr => (
+          {trailers.map(tr => (
             <div key={tr.id}>
               {
                 <div className="trailer" key={tr.id}>

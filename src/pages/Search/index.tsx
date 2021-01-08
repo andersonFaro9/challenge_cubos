@@ -5,11 +5,12 @@ import { Link } from 'react-router-dom';
 import { parseISO, format } from 'date-fns';
 
 import { Form, Info, Footer, Genry, Container } from './styles';
-import image from '../../assets/no-image2.svg';
+import fail from '../../assets/no_internet.svg';
+import image from '../../assets/no-photo.svg';
 
 import Header from '../../components/Header/styles';
 import api from '../../services/api';
-import fail from '../../assets/internet.svg';
+
 import { ISearchMovieProps } from '../../helpers/ISearchMovieProps';
 import { IGenres } from '../../helpers/IGenres';
 
@@ -42,13 +43,6 @@ const Search: React.FC = () => {
     [genres],
   );
 
-  const formatDate = useCallback((date?: string) => {
-    if (date) {
-      const [year, month, day] = date.split('-');
-      return `${day}/${month}/${year}`;
-    }
-  }, []);
-
   async function handleSubmit(
     event: FormEvent<HTMLFormElement>,
   ): Promise<void> {
@@ -70,11 +64,11 @@ const Search: React.FC = () => {
 
       setGenres(genres.data.genres);
 
-      setInputError('');
+      // setInputError('');
 
       setNewSearch('');
     } catch {
-      setInputError('Sem conexão, tente novamente');
+      setInputError('Algo de errado, por favor, verifique o suporte técnico');
       setLoading(false);
     }
   }
@@ -94,8 +88,12 @@ const Search: React.FC = () => {
             placeholder="Busque um filme por nome, ano ou gênero..."
           />
         </form>
-
-        {inputError && <img src={fail} alt="" />}
+        {inputError && (
+          <div>
+            Ops, algo errado! você buscou corretamente? Ou está sem conexão!!!
+          </div>
+        )}
+        {inputError && <img src={fail} alt="fail" />}
       </Form>
 
       {loading ? (
@@ -120,9 +118,8 @@ const Search: React.FC = () => {
 
                 <div className="title">{movie.original_title}</div>
                 <div className="date">
-                  {formatDate(`${movie.release_date}`)}
-
-                  {format(parseISO(`${movie.release_date}`), 'dd/MM/yyyy')}
+                  {movie?.release_date &&
+                    format(parseISO(movie.release_date), 'dd/MM/yyyy')}
                 </div>
 
                 {!movie.overview ? (
@@ -154,7 +151,7 @@ const Search: React.FC = () => {
           currentPage={currentPage}
         />
       ) : (
-        ''
+        'Algo estranho com o carregamento de informações'
       )}
       <Footer>{/* <div className="button-pages"></div> */}</Footer>
     </Container>
