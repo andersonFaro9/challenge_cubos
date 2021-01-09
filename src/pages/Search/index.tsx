@@ -64,8 +64,6 @@ const Search: React.FC = () => {
 
       setGenres(genres.data.genres);
 
-      // setInputError('');
-
       setNewSearch('');
     } catch {
       setInputError('Algo de errado, por favor, verifique o suporte técnico');
@@ -90,7 +88,7 @@ const Search: React.FC = () => {
         </form>
         {inputError && (
           <div>
-            Ops, algo errado! você buscou corretamente? Ou está sem conexão!!!
+            Ops, algo errado! você digitou corretamente? Está sem internet?
           </div>
         )}
         {inputError && <img src={fail} alt="fail" />}
@@ -106,7 +104,7 @@ const Search: React.FC = () => {
                 <img src={image} alt="poster" />
               ) : (
                 <img
-                  src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+                  src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
                   alt="poster"
                 />
               )}
@@ -143,15 +141,13 @@ const Search: React.FC = () => {
           ))}
         </Info>
       )}
-      {!loading ? (
+      {!loading && (
         <Pagination
           moviesPerPage={moviesPerPage}
           totalMovies={movies.length}
           paginate={paginate}
           currentPage={currentPage}
         />
-      ) : (
-        'Algo estranho com o carregamento de informações'
       )}
       <Footer>{/* <div className="button-pages"></div> */}</Footer>
     </Container>

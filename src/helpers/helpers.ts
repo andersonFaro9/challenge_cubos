@@ -1,11 +1,15 @@
-const convertMoney = (money: number) => {
+export const convertMoney = (money: number) => {
   const x = money
     .toLocaleString('pt-Br', { style: 'currency', currency: 'USD' })
     .split('US')[1];
 
   return x;
 };
-export default convertMoney;
+
+// export const testarNull = (movie: string) => {
+//   if (!movie) {
+//     return "teste"
+// }
 
 /*
   Em caso de duas funções num mesmo arquivo Typescript não utilize o "default" no export, px:

@@ -4,12 +4,12 @@ import { useRouteMatch } from 'react-router-dom';
 
 import { parseISO, format } from 'date-fns';
 
-import { Genry, Container, Sinopse, DetailsFilms, Percentage } from './styles';
+import { Container, Title, Image, Sinopse, Trailer, Date } from './styles';
 import api from '../../services/api';
 import Header from '../../components/Header/styles';
 import image from '../../assets/no-photo.svg';
 
-import convertMoney from '../../helpers/helpers';
+import { convertMoney } from '../../helpers/helpers';
 import { ITrailer } from './interfaces/ITrailer';
 import { IGenres } from '../../helpers/IGenres';
 
@@ -29,8 +29,8 @@ const Details: React.FC = () => {
   const [languages, setLanguage] = useState<ILanguage[]>([]);
   const language = 'language=pt-BR';
 
-  const token = '2bf45dbd029ec4fbc6d4df66adb594c9';
-  const videosresponse = 'append_to_response=videos';
+  const key = '2bf45dbd029ec4fbc6d4df66adb594c9';
+  const video = 'append_to_response=videos';
 
   const { params } = useRouteMatch<IMatchProps>();
 
@@ -42,7 +42,7 @@ const Details: React.FC = () => {
         setLoading(true);
 
         const response = await api.get(
-          `movie/${params.id}?api_key=${token}&${language}&${videosresponse}`,
+          `movie/${params.id}?api_key=${key}&${language}&${video}`,
         );
 
         setMovies(response.data);
@@ -75,113 +75,133 @@ const Details: React.FC = () => {
   return (
     <Container>
       <Header>Movies</Header>
-      <DetailsFilms>
+      <Title>
         <div className="title-film">{movie?.title}</div>
-        <div className="date">
+      </Title>
+      <Date>
+        <p className="date">
           {movie?.release_date &&
             format(parseISO(movie.release_date), 'dd/MM/yyyy')}
-        </div>
-      </DetailsFilms>
+        </p>
+      </Date>
       <Sinopse>
-        <div className="film">
-          <p className="title">Sinopse</p>
+        <section>
+          <article>
+            <div className="film">
+              <p className="info">Sinopse</p>
 
-          {!movie.overview ? (
-            <p className="no-info">Sinopse indisponível!!</p>
-          ) : (
-            <div className="sinopse">{movie.overview}</div>
-          )}
-        </div>
-        <p className="title">Informações</p>
-        <ul className="list-film">
-          <li>
-            Situação
-            <p className="items">
-              <span>
-                {movie?.status === 'Released' ? 'Lançado' : 'Em breve'}
-              </span>
-            </p>
-          </li>
+              {!movie.overview ? (
+                <p className="no-info">Sinopse indisponível!!</p>
+              ) : (
+                <div className="sinopse">{movie.overview}</div>
+              )}
+              <p className="info">Informações</p>
+              <ul className="list-info">
+                <li>
+                  <p>Situação</p>
+                  <p className="items">
+                    {movie?.status === 'Released' ? 'Lançado' : 'Em breve'}
+                  </p>
+                </li>
 
-          <li>
-            <h2>Idioma</h2>
-            {languages.map(lang => (
-              <div key={lang.iso_639_1}>
-                {lang.name === 'English' ? 'Inglês' : 'Português'}
+                <li>
+                  <p>Idioma</p>
+                  {languages.map(lang => (
+                    <div key={lang.iso_639_1}>
+                      <p className="items">
+                        {lang.name === 'English' ? 'Inglês' : 'Português'}
+                      </p>
+                    </div>
+                  ))}
+                </li>
+                <li>
+                  <p>Duração</p>
+                  <p className="items">
+                    {movie?.runtime
+                      ? formatTime(movie?.runtime)
+                      : 'Sem informação'}
+                  </p>
+                </li>
+                <li>
+                  <p>Orçamento</p>
+                  <p className="items">
+                    {movie?.budget
+                      ? convertMoney(movie?.budget)
+                      : 'Sem informação'}
+                  </p>
+                </li>
+                <li>
+                  <p>Receita</p>
+                  <p className="items">
+                    {movie?.revenue
+                      ? convertMoney(movie?.revenue)
+                      : 'Sem informação'}
+                  </p>
+                </li>
+                <li>
+                  <p>Lucro</p>
+                  <p className="items">
+                    {movie?.revenue - movie?.budget
+                      ? convertMoney(movie?.revenue - movie?.budget)
+                      : 'Sem informação'}
+                  </p>
+                </li>
+              </ul>
+
+              <ul className="list-genres">
+                {genres.map(genre => (
+                  <li key={genre.id}>
+                    {genre.name ? genre.name : 'Sem informação'}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="popularity">
+                <div className="value">
+                  {movie?.vote_average
+                    ? `${movie?.vote_average * 10}%`
+                    : 'Sem informação'}{' '}
+                </div>
               </div>
-            ))}
-          </li>
-          <li>
-            Duração
-            <span>
-              {movie?.runtime ? formatTime(movie?.runtime) : 'Sem informação'}
-            </span>
-          </li>
-          <li>
-            <h2>Orçamento</h2>
-            <span>
-              {movie?.budget ? convertMoney(movie?.budget) : 'Sem informação'}
-            </span>
-          </li>
-          <li>
-            <h2>Receita</h2>
-            <span>
-              {movie?.revenue ? convertMoney(movie?.revenue) : 'Sem informação'}
-            </span>
-          </li>
-          <li>
-            <h2>Lucro</h2>
-            <span>
-              {movie?.revenue - movie?.budget
-                ? convertMoney(movie?.revenue - movie?.budget)
-                : 'Sem informação'}
-            </span>
-          </li>
-        </ul>
+            </div>
+          </article>
+        </section>
+
+        <Image>
+          {!movie?.poster_path ? (
+            <img src={image} alt="poster" />
+          ) : (
+            <img
+              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+              alt="poster"
+            />
+          )}
+        </Image>
       </Sinopse>
-      <Genry>
-        {genres.map(genre => (
-          <div key={genre.id}>{genre.name ? genre.name : 'Sem informação'}</div>
-        ))}
-        <Percentage>
-          <div className="popularity">
-            {movie?.vote_average
-              ? `${movie?.vote_average * 10}%`
-              : 'Sem informação'}
-          </div>
-        </Percentage>
-      </Genry>
-      {!movie?.poster_path ? (
-        <img src={image} alt="poster" />
-      ) : (
-        <img
-          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-          alt="poster"
-        />
-      )}
-      {loading ? (
-        <h2>Aguardando carregamento de dados...</h2>
-      ) : (
-        <div>
-          {trailers.map(tr => (
-            <div key={tr.id}>
-              {
-                <div className="trailer" key={tr.id}>
+      <Trailer>
+        {loading ? (
+          <h2>Aguardando carregamento de dados...</h2>
+        ) : (
+          <div className="trailer">
+            {trailers.map(tr => (
+              <div key={tr.id}>
+                {
                   <iframe
-                    width="1280"
-                    height="540"
+                    key={tr.id}
+                    width="100%"
+                    height="800px"
                     title={tr.name}
                     src={`https://www.youtube.com/embed/${tr.key}`}
                     frameBorder="0"
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   ></iframe>
-                </div>
-              }
-            </div>
-          ))}
-        </div>
-      )}
+                }
+              </div>
+            ))}
+          </div>
+        )}
+      </Trailer>
     </Container>
   );
 };
