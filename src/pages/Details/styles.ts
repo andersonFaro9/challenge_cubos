@@ -40,7 +40,8 @@ export const Date = styled.div`
 
 export const Image = styled.div`
   display: flex;
-  order: 1;
+  margin-left: auto;
+  order: 2;
 `;
 
 export const Sinopse = styled.div`
@@ -56,18 +57,13 @@ export const Sinopse = styled.div`
     padding-right: 3rem;
     text-align: left;
   }
-  div.sinopse {
-    margin-top: 3rem;
-    opacity: 0.8;
+  p.no-info {
+    display: flex;
   }
   div.overview {
-    margin: 4%;
+    margin-top: 3rem;
     opacity: 0.8;
-    margin-top: 1rem;
-    font-size: 1.8rem;
-    color: #8c8c8c;
-    width: 89rem;
-    font-weight: bold;
+    width: 100%;
   }
 
   p.info {
@@ -85,7 +81,10 @@ export const Sinopse = styled.div`
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    margin-top: 3rem;
+
+    p {
+      margin: 0.5rem;
+    }
   }
 
   div.popularity {

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 100%;
   margin: 0 auto;
-  padding: 50px 0;
   text-align: center;
 `;
 
@@ -15,18 +14,15 @@ export const Form = styled.div`
     height: 5rem;
     width: 95%;
     max-width: 100%;
-
     margin: 4rem;
     padding: 0 2.4rem;
-
     font-size: 16px;
-    border: 0;
-    border-right: 0;
+    /* border: 0; */
+    /* border-right: 0; */
     background-color: #e6e6e6;
     border-radius: 3.2rem;
     color: #3a3a3a;
     border: 2px solid #fff;
-    border-right: 0;
 
     &::placeholder {
       color: #baccd7;
@@ -39,27 +35,21 @@ export const Form = styled.div`
 export const Info = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-
   margin: 4rem;
-  width: 95%;
-
-  max-width: 100%;
 
   div.details {
     color: #45d9db;
     font-size: 3.6rem;
     background-color: #116193;
     text-align: left;
-
+    width: 95%;
     height: 7rem;
   }
 
   p.no-info {
-    font-size: 3rem;
-    font-weight: 600;
+    display: flex;
     padding-left: 3rem;
-    color: #afafaf;
+    color: #8c8c8c;
   }
 
   a {
@@ -116,13 +106,14 @@ export const Info = styled.div`
     color: #afafaf;
     padding-left: 11rem;
   }
-  div.sinopse {
+  div.overview {
     padding-top: 1rem;
     text-align: left;
     font-size: 2rem;
     padding-right: 1rem;
     padding-left: 1.5rem;
     font-weight: 600;
+    width: 100%;
     font-family: Abel, Lato, Arial, Helvetica, sans-serif;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -143,11 +134,10 @@ export const Genry = styled.div`
     margin-top: 2rem;
   }
   p.no-genre {
+    display: flex;
     padding-top: 1rem;
     padding-left: 3rem;
-    font-weight: 600;
-    font-size: 3rem;
-    color: #afafaf;
+    color: #8c8c8c;
   }
 
   li {

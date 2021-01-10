@@ -12,7 +12,7 @@ export default createGlobalStyle`
   body{
     background: #FFFF;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+
 
   }
 
@@ -24,7 +24,7 @@ export default createGlobalStyle`
   /* #root {
     flex: 1;
     text-align:center;
-    max-width: 960px;
+    max-width: 100%;
     margin: 0 auto;
   } */
 `;

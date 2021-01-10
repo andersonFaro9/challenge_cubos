@@ -65,7 +65,7 @@ const Details: React.FC = () => {
       result = result.replace(/([0-9]{2})$/g, 'h $1');
       return `${result} min`;
     }
-    return 'Sem informações';
+    return 'Sem informação';
   }, []);
 
   if (!movie) {
@@ -93,14 +93,16 @@ const Details: React.FC = () => {
               {!movie.overview ? (
                 <p className="no-info">Sinopse indisponível!!</p>
               ) : (
-                <div className="sinopse">{movie.overview}</div>
+                <div className="overview">{movie.overview}</div>
               )}
               <p className="info">Informações</p>
               <ul className="list-info">
                 <li>
                   <p>Situação</p>
                   <p className="items">
-                    {movie?.status === 'Released' ? 'Lançado' : 'Em breve'}
+                    {movie?.status === 'Released'
+                      ? 'Lançado'
+                      : 'Sem informação'}
                   </p>
                 </li>
 
@@ -141,7 +143,7 @@ const Details: React.FC = () => {
                 <li>
                   <p>Lucro</p>
                   <p className="items">
-                    {movie?.revenue - movie?.budget
+                    {movie?.revenue
                       ? convertMoney(movie?.revenue - movie?.budget)
                       : 'Sem informação'}
                   </p>
@@ -157,11 +159,7 @@ const Details: React.FC = () => {
               </ul>
 
               <div className="popularity">
-                <div className="value">
-                  {movie?.vote_average
-                    ? `${movie?.vote_average * 10}%`
-                    : 'Sem informação'}{' '}
-                </div>
+                <div className="value">{`${movie?.vote_average * 10}%`}</div>
               </div>
             </div>
           </article>

@@ -65,9 +65,9 @@ const Search: React.FC = () => {
       setGenres(genres.data.genres);
 
       setNewSearch('');
+      setInputError('');
     } catch {
       setInputError('Algo de errado, por favor, verifique o suporte técnico');
-      setLoading(false);
     }
   }
 
@@ -86,6 +86,7 @@ const Search: React.FC = () => {
             placeholder="Busque um filme por nome, ano ou gênero..."
           />
         </form>
+
         {inputError && (
           <div>
             Ops, algo errado! você digitou corretamente? Está sem internet?
@@ -123,7 +124,7 @@ const Search: React.FC = () => {
                 {!movie.overview ? (
                   <p className="no-info">Sinopse indisponível!!</p>
                 ) : (
-                  <div className="sinopse">{movie.overview}</div>
+                  <div className="overview">{movie.overview}</div>
                 )}
                 <Genry>
                   <ul className="genres">
