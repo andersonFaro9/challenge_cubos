@@ -4,7 +4,7 @@ import { useRouteMatch } from 'react-router-dom';
 
 import { parseISO, format } from 'date-fns';
 
-import { Container, Title, Image, Sinopse, Trailer, Date } from './styles';
+import { Container, Image, Sinopse, Trailer, Date } from './styles';
 import api from '../../services/api';
 import Header from '../../components/Header/styles';
 import image from '../../assets/no-photo.svg';
@@ -15,6 +15,7 @@ import { IGenres } from '../../helpers/IGenres';
 
 import { ISearchMovieProps } from '../../helpers/ISearchMovieProps';
 import { ILanguage } from './interfaces/ILanguage';
+import Title from '../../components/Title/Title';
 
 type IMatchProps = {
   id: string;
@@ -69,15 +70,14 @@ const Details: React.FC = () => {
   }, []);
 
   if (!movie) {
-    return <div>carregando informações...</div>;
+    return <div>Aguardando informações...</div>;
   }
 
   return (
     <Container>
       <Header>Movies</Header>
-      <Title>
-        <div className="title-film">{movie?.title}</div>
-      </Title>
+      <Title original_title={movie?.original_title} />
+
       <Date>
         <p className="date">
           {movie?.release_date &&
@@ -93,7 +93,7 @@ const Details: React.FC = () => {
               {!movie.overview ? (
                 <p className="no-info">Sinopse indisponível!!</p>
               ) : (
-                <div className="overview">{movie.overview}</div>
+                <p className="overview">{movie.overview}</p>
               )}
               <p className="info">Informações</p>
               <ul className="list-info">

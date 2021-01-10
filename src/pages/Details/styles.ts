@@ -7,21 +7,6 @@ export const Container = styled.div`
   text-align: center;
 `;
 
-export const Title = styled.div`
-  div.title-film {
-    position: absolute;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin-top: 4rem;
-    padding-top: 2rem;
-    margin-left: 4rem;
-    color: #116193;
-    font-weight: 550;
-    font-size: 3.4rem;
-    height: 6rem;
-  }
-`;
 export const Date = styled.div`
   p.date {
     display: flex;
@@ -60,7 +45,7 @@ export const Sinopse = styled.div`
   p.no-info {
     display: flex;
   }
-  div.overview {
+  p.overview {
     margin-top: 3rem;
     opacity: 0.8;
     width: 100%;

@@ -76,7 +76,7 @@ export const Info = styled.div`
     height: 9.4rem;
     background-color: #116193;
   }
-  div.value {
+  p.value {
     background-color: #116193;
     border-style: solid;
     margin-top: 0.1rem;
@@ -90,7 +90,7 @@ export const Info = styled.div`
     height: 6.9rem;
   }
 
-  div.title {
+  p.title {
     padding-left: 11rem;
     padding-top: 2rem;
     overflow: hidden;
@@ -100,13 +100,13 @@ export const Info = styled.div`
     -webkit-box-orient: vertical;
   }
 
-  div.date {
+  p.date {
     padding-top: 1rem;
     font-size: 2.1rem;
     color: #afafaf;
     padding-left: 11rem;
   }
-  div.overview {
+  p.overview {
     padding-top: 1rem;
     text-align: left;
     font-size: 2rem;

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { parseISO, format } from 'date-fns';
 
-import { Form, Info, Footer, Genry, Container } from './styles';
+import { Form, Info, Genry, Container } from './styles';
 import fail from '../../assets/no_internet.svg';
 import image from '../../assets/no-photo.svg';
 
@@ -15,6 +15,7 @@ import { ISearchMovieProps } from '../../helpers/ISearchMovieProps';
 import { IGenres } from '../../helpers/IGenres';
 
 import Pagination from '../../components/Pagination/Pagination';
+// import Title from '../../components/Title/Title';
 
 const Search: React.FC = () => {
   const [newSearch, setNewSearch] = useState('');
@@ -31,9 +32,9 @@ const Search: React.FC = () => {
 
   const [moviesPerPage] = useState(4);
 
-  const paginate = (pageNumber: number) => {
+  const paginate = useCallback((pageNumber: number) => {
     return setCurrentPage(pageNumber);
-  };
+  }, []);
 
   const formatGenre = useCallback(
     (id?: string) => {
@@ -77,80 +78,85 @@ const Search: React.FC = () => {
 
   return (
     <Container>
-      <Header>Movies</Header>
-      <Form>
-        <form onSubmit={handleSubmit}>
-          <input
-            value={newSearch}
-            onChange={e => setNewSearch(e.target.value)}
-            placeholder="Busque um filme por nome, ano ou gênero..."
-          />
-        </form>
+      <section>
+        <article>
+          <header>
+            <Header>Movies</Header>
+          </header>
+          <Form>
+            <form onSubmit={handleSubmit}>
+              <input
+                value={newSearch}
+                onChange={e => setNewSearch(e.target.value)}
+                placeholder="Busque um filme por nome, ano ou gênero..."
+              />
+            </form>
 
-        {inputError && (
-          <div>
-            Ops, algo errado! você digitou corretamente? Está sem internet?
-          </div>
-        )}
-        {inputError && <img src={fail} alt="fail" />}
-      </Form>
-
-      {loading ? (
-        <h2>Aguardando carregamento de dados...</h2>
-      ) : (
-        <Info>
-          {currentMovies.map(movie => (
-            <Link key={movie.id} to={`/details/${movie.id}`}>
-              {!movie.poster_path ? (
-                <img src={image} alt="poster" />
-              ) : (
-                <img
-                  src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
-                  alt="poster"
-                />
-              )}
-
-              <div className="details">
-                <div className="percentage">
-                  <div className="value">{movie.vote_average * 10} %</div>
-                </div>
-
-                <div className="title">{movie.original_title}</div>
-                <div className="date">
-                  {movie?.release_date &&
-                    format(parseISO(movie.release_date), 'dd/MM/yyyy')}
-                </div>
-
-                {!movie.overview ? (
-                  <p className="no-info">Sinopse indisponível!!</p>
-                ) : (
-                  <div className="overview">{movie.overview}</div>
-                )}
-                <Genry>
-                  <ul className="genres">
-                    {movie.genre_ids.length ? (
-                      movie.genre_ids.map(genre_id => (
-                        <li key={genre_id}>{formatGenre(genre_id)}</li>
-                      ))
-                    ) : (
-                      <p className="no-genre"> Gênero indisponível!!</p>
-                    )}
-                  </ul>
-                </Genry>
+            {inputError && (
+              <div>
+                Ops, algo errado! você digitou corretamente? Está sem internet?
               </div>
-            </Link>
-          ))}
-        </Info>
-      )}
-      {!loading && (
-        <Pagination
-          moviesPerPage={moviesPerPage}
-          totalMovies={movies.length}
-          paginate={paginate}
-          currentPage={currentPage}
-        />
-      )}
-      <Footer>{/* <div className="button-pages"></div> */}</Footer>
+            )}
+            {inputError && <img src={fail} alt="fail" />}
+          </Form>
+
+          {loading ? (
+            <h2>Aguardando carregamento de dados...</h2>
+          ) : (
+            <Info>
+              {currentMovies.map(movie => (
+                <Link key={movie.id} to={`/details/${movie.id}`}>
+                  {!movie.poster_path ? (
+                    <img src={image} alt="poster" />
+                  ) : (
+                    <img
+                      src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+                      alt="poster"
+                    />
+                  )}
+
+                  <div className="details">
+                    <div className="percentage">
+                      <p className="value">{movie.vote_average * 10} %</p>
+                    </div>
+
+                    <p className="title">{movie.original_title}</p>
+                    <p className="date">
+                      {movie?.release_date &&
+                        format(parseISO(movie.release_date), 'dd/MM/yyyy')}
+                    </p>
+
+                    {!movie.overview ? (
+                      <p className="no-info">Sinopse indisponível!!</p>
+                    ) : (
+                      <p className="overview">{movie.overview}</p>
+                    )}
+                    <Genry>
+                      <ul className="genres">
+                        {movie.genre_ids.length ? (
+                          movie.genre_ids.map(genre_id => (
+                            <li key={genre_id}>{formatGenre(genre_id)}</li>
+                          ))
+                        ) : (
+                          <p className="no-genre"> Gênero indisponível!!</p>
+                        )}
+                      </ul>
+                    </Genry>
+                  </div>
+                </Link>
+              ))}
+            </Info>
+          )}
+          {!loading && (
+            <Pagination
+              moviesPerPage={moviesPerPage}
+              totalMovies={movies.length}
+              paginate={paginate}
+              currentPage={currentPage}
+            />
+          )}
+        </article>
+      </section>
     </Container>
   );
 };
