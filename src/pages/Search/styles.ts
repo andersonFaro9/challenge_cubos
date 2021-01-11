@@ -125,6 +125,7 @@ export const Info = styled.div`
     color: #8c8c8c;
   }
 `;
+
 export const Genry = styled.div`
   ul.genres {
     flex-direction: row;

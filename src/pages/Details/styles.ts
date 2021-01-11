@@ -8,18 +8,27 @@ export const Container = styled.div`
 `;
 
 export const Date = styled.div`
+  margin-top: 4rem;
   p.date {
     display: flex;
-    align-items: flex-start;
-    justify-items: right;
-    margin-top: 4rem;
+    flex-direction: row-reverse;
     width: 100%;
     height: 8rem;
     background-color: #e6e6e6;
     font-size: 2.1rem;
-    padding-top: 2rem;
-    padding-left: 175rem;
+    padding-top: 3rem;
+    padding-right: 2rem;
     color: #afafaf;
+  }
+  p.title {
+    position: absolute;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    padding-left: 5rem;
+    padding-top: 2rem;
+    color: #1e6194;
+    font-size: 3.5rem;
   }
 `;
 
@@ -66,7 +75,8 @@ export const Sinopse = styled.div`
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-
+    margin-top: 2rem;
+    color: #1e6194;
     p {
       margin: 0.5rem;
     }
@@ -105,10 +115,10 @@ export const Sinopse = styled.div`
   }
 
   p.items {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     text-align: center;
     color: #595959;
-    font-weight: bold;
+    font-weight: 600;
   }
   ul.list-genres {
     margin-top: 3rem;

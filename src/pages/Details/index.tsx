@@ -76,14 +76,15 @@ const Details: React.FC = () => {
   return (
     <Container>
       <Header>Movies</Header>
-      <Title original_title={movie?.original_title} />
 
       <Date>
+        <p className="title">{movie.original_title}</p>
         <p className="date">
           {movie?.release_date &&
             format(parseISO(movie.release_date), 'dd/MM/yyyy')}
         </p>
       </Date>
+
       <Sinopse>
         <section>
           <article>

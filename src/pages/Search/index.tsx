@@ -15,7 +15,7 @@ import { ISearchMovieProps } from '../../helpers/ISearchMovieProps';
 import { IGenres } from '../../helpers/IGenres';
 
 import Pagination from '../../components/Pagination/Pagination';
-// import Title from '../../components/Title/Title';
+import Title from '../../components/Title/Title';
 
 const Search: React.FC = () => {
   const [newSearch, setNewSearch] = useState('');
@@ -119,7 +119,6 @@ const Search: React.FC = () => {
                     <div className="percentage">
                       <p className="value">{movie.vote_average * 10} %</p>
                     </div>
-
                     <p className="title">{movie.original_title}</p>
                     <p className="date">
                       {movie?.release_date &&
