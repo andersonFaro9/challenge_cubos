@@ -4,10 +4,11 @@ import { useRouteMatch } from 'react-router-dom';
 
 import { parseISO, format } from 'date-fns';
 
-import { Container, Image, Sinopse, Trailer, Date } from './styles';
+import { List } from 'material-ui';
+import { Container, Sinopse, Trailer, Date } from './styles';
 import api from '../../services/api';
 import Header from '../../components/Header/styles';
-import image from '../../assets/no-photo.svg';
+import imageDefault from '../../assets/image-default.svg';
 
 import { convertMoney } from '../../helpers/helpers';
 import { ITrailer } from './interfaces/ITrailer';
@@ -15,7 +16,6 @@ import { IGenres } from '../../helpers/IGenres';
 
 import { ISearchMovieProps } from '../../helpers/ISearchMovieProps';
 import { ILanguage } from './interfaces/ILanguage';
-import Title from '../../components/Title/Title';
 
 type IMatchProps = {
   id: string;
@@ -38,6 +38,7 @@ const Details: React.FC = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
     async function loadMovie() {
       try {
         setLoading(true);
@@ -52,6 +53,7 @@ const Details: React.FC = () => {
         setLanguage(response.data.spoken_languages);
         setTrailer(response.data.videos.results);
       } catch (err) {
+        setLoading(false);
       } finally {
         setLoading(false);
       }
@@ -70,13 +72,14 @@ const Details: React.FC = () => {
   }, []);
 
   if (!movie) {
-    return <div>Aguardando informações...</div>;
+    return <div>Aguardando informações, isso pode levar algum tempo...</div>;
   }
 
   return (
     <Container>
-      <Header>Movies</Header>
-
+      <header>
+        <Header>Movies</Header>
+      </header>
       <Date>
         <p className="title">{movie.original_title}</p>
         <p className="date">
@@ -97,6 +100,7 @@ const Details: React.FC = () => {
                 <p className="overview">{movie.overview}</p>
               )}
               <p className="info">Informações</p>
+
               <ul className="list-info">
                 <li>
                   <p>Situação</p>
@@ -158,24 +162,22 @@ const Details: React.FC = () => {
                   </li>
                 ))}
               </ul>
-
-              <div className="popularity">
-                <div className="value">{`${movie?.vote_average * 10}%`}</div>
-              </div>
+            </div>
+            <div className="popularity">
+              <div className="value">{`${movie?.vote_average * 10}%`}</div>
             </div>
           </article>
         </section>
 
-        <Image>
-          {!movie?.poster_path ? (
-            <img src={image} alt="poster" />
-          ) : (
-            <img
-              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-              alt="poster"
-            />
-          )}
-        </Image>
+        {!movie?.poster_path ? (
+          <img className="poster" src={imageDefault} alt="poster" />
+        ) : (
+          <img
+            className="poster"
+            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+            alt="poster"
+          />
+        )}
       </Sinopse>
       <Trailer>
         {loading ? (

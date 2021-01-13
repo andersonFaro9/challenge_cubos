@@ -4,29 +4,37 @@ export const Container = styled.div`
   width: 100%;
   margin: 0 auto;
   text-align: center;
+  div.error {
+    line-height: 2rem;
+    color: #1e6093;
+    font-size: 2rem;
+  }
 `;
 
 export const Form = styled.div`
   input {
     display: flex;
+    justify-content: flex-end;
     align-items: center;
-    justify-content: center;
     height: 5rem;
     width: 95%;
+    margin: 4rem auto;
+
     max-width: 100%;
-    margin: 4rem;
+
     padding: 0 2.4rem;
-    font-size: 16px;
-    /* border: 0; */
-    /* border-right: 0; */
+    font-size: 2rem;
     background-color: #e6e6e6;
     border-radius: 3.2rem;
     color: #3a3a3a;
     border: 2px solid #fff;
 
     &::placeholder {
-      color: #baccd7;
+      color: #116193;
+      opacity: 0.4;
       padding: 1.5rem;
+      font-weight: 100;
+
       font-size: 1.8rem;
     }
   }
@@ -35,7 +43,9 @@ export const Form = styled.div`
 export const Info = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 4rem;
+  width: 95%;
+  max-width: 100%;
+  margin: 1rem auto;
 
   div.details {
     color: #45d9db;
@@ -54,7 +64,8 @@ export const Info = styled.div`
 
   a {
     text-decoration: none;
-    margin-top: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 4rem;
     display: flex;
     background-color: #ebebeb;
   }
@@ -112,7 +123,7 @@ export const Info = styled.div`
     font-size: 2rem;
     padding-right: 1rem;
     padding-left: 1.5rem;
-    font-weight: 600;
+
     width: 100%;
     font-family: Abel, Lato, Arial, Helvetica, sans-serif;
     overflow: hidden;
@@ -120,9 +131,13 @@ export const Info = styled.div`
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
-
     background-color: #ebebeb;
-    color: #8c8c8c;
+    color: #2b2a2ad4;
+  }
+  .poster {
+    max-height: 30%;
+    max-width: 30%;
+    flex-grow: 1;
   }
 `;
 
@@ -134,6 +149,12 @@ export const Genry = styled.div`
     justify-content: flex-start;
     margin-top: 2rem;
   }
+  @media (max-width: 762px) {
+    ul.genres {
+      flex-direction: column;
+    }
+  }
+
   p.no-genre {
     display: flex;
     padding-top: 1rem;
@@ -152,13 +173,17 @@ export const Genry = styled.div`
     background-color: white;
     font-size: 15px;
     color: #116193;
-    font-weight: 600;
     text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    /* -webkit-line-clamp: 4; */
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
+  }
+  @media (max-width: 425px) {
+    li {
+      display: none;
+    }
   }
 
   @media (max-width: 863px) {

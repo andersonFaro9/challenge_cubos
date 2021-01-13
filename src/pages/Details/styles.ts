@@ -25,24 +25,42 @@ export const Date = styled.div`
     display: flex;
     align-items: flex-start;
     flex-direction: row;
-    padding-left: 5rem;
+    padding-left: 4rem;
     padding-top: 2rem;
     color: #1e6194;
     font-size: 3.5rem;
   }
-`;
 
-export const Image = styled.div`
-  display: flex;
-  margin-left: auto;
-  order: 2;
+  @media (max-width: 768px) {
+    p.title {
+      float: left;
+      padding-left: 0rem;
+      padding-top: 2rem;
+      color: #1e6194;
+      font-size: 3.5rem;
+    }
+  }
+  @media (max-width: 799px) {
+    p.title {
+      float: left;
+      padding-left: 2rem;
+      padding-top: 2rem;
+      color: #1e6194;
+      font-size: 3.5rem;
+    }
+  }
+
+  @media (max-width: 1071px) {
+    p.title {
+      padding-left: 1rem;
+    }
+  }
 `;
 
 export const Sinopse = styled.div`
   display: flex;
   background-color: #f2f2f2;
-  justify-items: center;
-  align-items: flex-start;
+  justify-content: space-between;
   width: 100%;
 
   div.film {
@@ -50,14 +68,60 @@ export const Sinopse = styled.div`
     padding-left: 4rem;
     padding-right: 3rem;
     text-align: left;
+    p.overview {
+      margin-top: 3rem;
+      font-size: 2rem;
+      opacity: 0.8;
+      width: 100%;
+      color: #2b2a2ad4;
+    }
+  }
+
+  @media (max-width: 768px) {
+    div.film {
+      padding-left: 2rem;
+      padding-top: 2rem;
+    }
+  }
+  @media (max-width: 799px) {
+    div.film {
+      padding-left: 2rem;
+      padding-top: 2rem;
+    }
   }
   p.no-info {
     display: flex;
-  }
-  p.overview {
-    margin-top: 3rem;
-    opacity: 0.8;
+    justify-content: flex-start;
+    align-items: flex-start;
     width: 100%;
+  }
+
+  @media (max-width: 488px) {
+    p.overview {
+      width: 80%;
+    }
+  }
+
+  img.poster {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    max-height: 30%;
+    max-width: 30%;
+  }
+
+  @media (max-width: 425px) {
+    img.poster {
+      display: none;
+    }
+  }
+
+  @media (max-width: 1071px) {
+    img.poster {
+      width: 25%;
+      height: 30%;
+      order: -2;
+    }
   }
 
   p.info {
@@ -65,30 +129,97 @@ export const Sinopse = styled.div`
     padding-top: 1.8rem;
     padding-bottom: 1rem;
     color: #1e6194;
-    font-weight: 550;
-    font-size: 2.5rem;
+    /* font-weight: 550; */
+    opacity: 0.8;
+    font-size: 3rem;
     margin-top: 2rem;
     border-bottom: 2px solid #00ffff;
   }
 
+  @media (max-width: 768px) {
+    p.info {
+      padding: 0rem;
+    }
+  }
+
+  @media (max-width: 799px) {
+    p.info {
+      padding: 0rem;
+    }
+  }
+
   ul.list-info {
     display: flex;
-    align-items: flex-start;
+    flex-direction: row;
+    width: 100%;
+    align-items: flex-end;
     justify-content: space-between;
     margin-top: 2rem;
     color: #1e6194;
-    p {
-      margin: 0.5rem;
+
+    opacity: 0.9;
+    font-size: 3rem;
+  }
+  li {
+    margin: 0.5rem;
+    font-size: 4rem;
+  }
+  p.items {
+    font-size: 1.5rem;
+    text-align: center;
+    text-align: center;
+    color: #1d1c1c;
+    font-weight: 100;
+  }
+
+  @media (max-width: 488px) {
+    ul.list-info {
+      display: flex;
+      flex-direction: column;
+      margin-top: 2rem;
+      color: #1e6194;
+      p {
+        margin: 0.2rem;
+      }
     }
   }
 
   div.popularity {
+    display: flex;
+    flex-direction: row-reverse;
     border: 4px solid #116193;
     border-radius: 50px;
     width: 100px;
     height: 100px;
+    justify-content: space-evenly;
     float: right;
     margin-right: 3rem;
+  }
+  @media (max-width: 488px) {
+    div.popularity {
+      float: left;
+      margin-top: 3rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    div.popularity {
+      float: left;
+      margin-top: 2rem;
+    }
+  }
+  @media (max-width: 799px) {
+    div.popularity {
+      float: left;
+      margin-top: 2rem;
+    }
+  }
+
+  @media (max-width: 1071px) {
+    div.popularity {
+      float: left;
+      margin-top: 2rem;
+    }
   }
   div.value {
     background: #116193;
@@ -114,11 +245,10 @@ export const Sinopse = styled.div`
     padding-right: 4rem;
   }
 
-  p.items {
-    font-size: 1.5rem;
-    text-align: center;
-    color: #595959;
-    font-weight: 600;
+  @media (max-width: 488px) {
+    p.items {
+      text-align: left;
+    }
   }
   ul.list-genres {
     margin-top: 3rem;
@@ -143,6 +273,23 @@ export const Sinopse = styled.div`
       text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-box-orient: vertical;
+    }
+  }
+
+  @media (max-width: 375px) {
+    ul.list-genres {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+  @media (max-width: 425px) {
+    ul.list-genres {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
     }
   }
 `;

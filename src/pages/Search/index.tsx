@@ -6,7 +6,7 @@ import { parseISO, format } from 'date-fns';
 
 import { Form, Info, Genry, Container } from './styles';
 import fail from '../../assets/no_internet.svg';
-import image from '../../assets/no-photo.svg';
+import imageDefault from '../../assets/image-default.svg';
 
 import Header from '../../components/Header/styles';
 import api from '../../services/api';
@@ -15,7 +15,6 @@ import { ISearchMovieProps } from '../../helpers/ISearchMovieProps';
 import { IGenres } from '../../helpers/IGenres';
 
 import Pagination from '../../components/Pagination/Pagination';
-import Title from '../../components/Title/Title';
 
 const Search: React.FC = () => {
   const [newSearch, setNewSearch] = useState('');
@@ -26,7 +25,6 @@ const Search: React.FC = () => {
   const token = '2bf45dbd029ec4fbc6d4df66adb594c9';
   const language = 'language=pt-BR';
   const [loading, setLoading] = useState(false);
-  const [inputError, setInputError] = useState('');
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -48,6 +46,7 @@ const Search: React.FC = () => {
     event: FormEvent<HTMLFormElement>,
   ): Promise<void> {
     event.preventDefault();
+
     setLoading(true);
     try {
       const response = await api.get(
@@ -66,9 +65,8 @@ const Search: React.FC = () => {
       setGenres(genres.data.genres);
 
       setNewSearch('');
-      setInputError('');
-    } catch {
-      setInputError('Algo de errado, por favor, verifique o suporte técnico');
+    } catch (err) {
+      setLoading(false);
     }
   }
 
@@ -91,25 +89,21 @@ const Search: React.FC = () => {
                 placeholder="Busque um filme por nome, ano ou gênero..."
               />
             </form>
-
-            {inputError && (
-              <div>
-                Ops, algo errado! você digitou corretamente? Está sem internet?
-              </div>
-            )}
-            {inputError && <img src={fail} alt="fail" />}
           </Form>
 
           {loading ? (
-            <h2>Aguardando carregamento de dados...</h2>
+            <div className="error">
+              Aguardando informações, isso pode levar algum tempo...
+            </div>
           ) : (
             <Info>
               {currentMovies.map(movie => (
                 <Link key={movie.id} to={`/details/${movie.id}`}>
                   {!movie.poster_path ? (
-                    <img src={image} alt="poster" />
+                    <img className="poster" src={imageDefault} alt="poster" />
                   ) : (
                     <img
+                      className="poster"
                       src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
                       alt="poster"
                     />
@@ -146,6 +140,8 @@ const Search: React.FC = () => {
               ))}
             </Info>
           )}
+          {loading && <img src={fail} alt="fail" />}
+
           {!loading && (
             <Pagination
               moviesPerPage={moviesPerPage}
