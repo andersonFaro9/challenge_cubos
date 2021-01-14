@@ -4,7 +4,6 @@ import { useRouteMatch } from 'react-router-dom';
 
 import { parseISO, format } from 'date-fns';
 
-import { List } from 'material-ui';
 import { Container, Sinopse, Trailer, Date } from './styles';
 import api from '../../services/api';
 import Header from '../../components/Header/styles';
@@ -168,7 +167,6 @@ const Details: React.FC = () => {
             </div>
           </article>
         </section>
-
         {!movie?.poster_path ? (
           <img className="poster" src={imageDefault} alt="poster" />
         ) : (
@@ -179,6 +177,7 @@ const Details: React.FC = () => {
           />
         )}
       </Sinopse>
+
       <Trailer>
         {loading ? (
           <h2>Aguardando carregamento de dados...</h2>

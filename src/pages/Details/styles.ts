@@ -30,7 +30,6 @@ export const Date = styled.div`
     color: #1e6194;
     font-size: 3.5rem;
   }
-
   @media (max-width: 768px) {
     p.title {
       float: left;
@@ -49,7 +48,6 @@ export const Date = styled.div`
       font-size: 3.5rem;
     }
   }
-
   @media (max-width: 1071px) {
     p.title {
       padding-left: 1rem;
@@ -59,10 +57,13 @@ export const Date = styled.div`
 
 export const Sinopse = styled.div`
   display: flex;
+
   background-color: #f2f2f2;
   justify-content: space-between;
   width: 100%;
-
+  section {
+    flex: 1;
+  }
   div.film {
     padding-top: 0.1rem;
     padding-left: 4rem;
@@ -76,7 +77,6 @@ export const Sinopse = styled.div`
       color: #2b2a2ad4;
     }
   }
-
   @media (max-width: 768px) {
     div.film {
       padding-left: 2rem;
@@ -95,13 +95,11 @@ export const Sinopse = styled.div`
     align-items: flex-start;
     width: 100%;
   }
-
   @media (max-width: 488px) {
     p.overview {
       width: 80%;
     }
   }
-
   img.poster {
     display: flex;
     flex-direction: row-reverse;
@@ -109,13 +107,11 @@ export const Sinopse = styled.div`
     max-height: 30%;
     max-width: 30%;
   }
-
   @media (max-width: 425px) {
     img.poster {
       display: none;
     }
   }
-
   @media (max-width: 1071px) {
     img.poster {
       width: 25%;
@@ -123,7 +119,6 @@ export const Sinopse = styled.div`
       order: -2;
     }
   }
-
   p.info {
     text-align: left;
     padding-top: 1.8rem;
@@ -135,19 +130,16 @@ export const Sinopse = styled.div`
     margin-top: 2rem;
     border-bottom: 2px solid #00ffff;
   }
-
   @media (max-width: 768px) {
     p.info {
       padding: 0rem;
     }
   }
-
   @media (max-width: 799px) {
     p.info {
       padding: 0rem;
     }
   }
-
   ul.list-info {
     display: flex;
     flex-direction: row;
@@ -156,7 +148,6 @@ export const Sinopse = styled.div`
     justify-content: space-between;
     margin-top: 2rem;
     color: #1e6194;
-
     opacity: 0.9;
     font-size: 3rem;
   }
@@ -171,8 +162,7 @@ export const Sinopse = styled.div`
     color: #1d1c1c;
     font-weight: 100;
   }
-
-  @media (max-width: 488px) {
+  /* @media (max-width: 488px) {
     ul.list-info {
       display: flex;
       flex-direction: column;
@@ -182,8 +172,24 @@ export const Sinopse = styled.div`
         margin: 0.2rem;
       }
     }
-  }
+  } */
 
+  @media (max-width: 425px) {
+    ul.list-info {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      flex-direction: column;
+      margin-top: 2rem;
+      color: #1e6194;
+      p {
+        margin: 0.2rem;
+      }
+      img.poster {
+        background-image: url('paper.gif');
+      }
+    }
+  }
   div.popularity {
     display: flex;
     flex-direction: row-reverse;
@@ -201,7 +207,6 @@ export const Sinopse = styled.div`
       margin-top: 3rem;
     }
   }
-
   @media (max-width: 768px) {
     div.popularity {
       float: left;
@@ -214,7 +219,6 @@ export const Sinopse = styled.div`
       margin-top: 2rem;
     }
   }
-
   @media (max-width: 1071px) {
     div.popularity {
       float: left;
@@ -233,18 +237,15 @@ export const Sinopse = styled.div`
     font-size: 35px;
     color: #03ced5;
   }
-
   li {
     list-style: none;
     color: #1e6194;
     font-weight: 550;
     font-size: 2rem;
   }
-
   li.lucre {
     padding-right: 4rem;
   }
-
   @media (max-width: 488px) {
     p.items {
       text-align: left;
@@ -256,7 +257,6 @@ export const Sinopse = styled.div`
     display: flex;
     align-items: center;
     justify-items: space-around;
-
     li {
       list-style: none;
       border: 2px solid #b0c8d6;
@@ -267,7 +267,6 @@ export const Sinopse = styled.div`
       background-color: white;
       font-size: 16px;
       color: #116193;
-
       text-align: center;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -275,7 +274,6 @@ export const Sinopse = styled.div`
       -webkit-box-orient: vertical;
     }
   }
-
   @media (max-width: 375px) {
     ul.list-genres {
       display: flex;

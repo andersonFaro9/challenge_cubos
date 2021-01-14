@@ -22,7 +22,8 @@ export const Form = styled.div`
 
     max-width: 100%;
 
-    padding: 0 2.4rem;
+    padding: 0 1.5rem;
+
     font-size: 2rem;
     background-color: #e6e6e6;
     border-radius: 3.2rem;
@@ -32,7 +33,7 @@ export const Form = styled.div`
     &::placeholder {
       color: #116193;
       opacity: 0.4;
-      padding: 1.5rem;
+
       font-weight: 100;
 
       font-size: 1.8rem;
@@ -60,6 +61,23 @@ export const Info = styled.div`
     display: flex;
     padding-left: 3rem;
     color: #8c8c8c;
+    font-size: 3rem;
+    padding-top: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    p.no-info {
+      padding-top: 3rem;
+      padding-left: 3rem;
+    }
+  }
+
+  @media (max-width: 1440px) {
+    p.no-info {
+      padding-top: 2rem;
+      font-size: 2rem;
+      padding-left: 3rem;
+    }
   }
 
   a {
@@ -100,6 +118,21 @@ export const Info = styled.div`
     width: 7.2rem;
     height: 6.9rem;
   }
+  @media (max-width: 768px) {
+    p.value {
+      width: 7.3rem;
+      font-size: 2rem;
+      height: 7rem;
+    }
+  }
+
+  @media (max-width: 1440px) {
+    p.value {
+      width: 7.3rem;
+      font-size: 2rem;
+      height: 7rem;
+    }
+  }
 
   p.title {
     padding-left: 11rem;
@@ -123,7 +156,6 @@ export const Info = styled.div`
     font-size: 2rem;
     padding-right: 1rem;
     padding-left: 1.5rem;
-
     width: 100%;
     font-family: Abel, Lato, Arial, Helvetica, sans-serif;
     overflow: hidden;
@@ -133,6 +165,22 @@ export const Info = styled.div`
     -webkit-box-orient: vertical;
     background-color: #ebebeb;
     color: #2b2a2ad4;
+  }
+
+  @media (max-width: 425px) {
+    p.overview {
+      -webkit-line-clamp: 1;
+    }
+  }
+  @media (max-width: 375px) {
+    p.overview {
+      -webkit-line-clamp: 2;
+    }
+  }
+  @media (max-width: 320px) {
+    p.overview {
+      -webkit-line-clamp: 1;
+    }
   }
   .poster {
     max-height: 30%;
@@ -149,6 +197,7 @@ export const Genry = styled.div`
     justify-content: flex-start;
     margin-top: 2rem;
   }
+
   @media (max-width: 762px) {
     ul.genres {
       flex-direction: column;
@@ -158,10 +207,24 @@ export const Genry = styled.div`
   p.no-genre {
     display: flex;
     padding-top: 1rem;
+    font-size: 3rem;
     padding-left: 3rem;
     color: #8c8c8c;
   }
-
+  @media (max-width: 375px) {
+    p.no-genre {
+      font-size: 2rem;
+      padding-left: 3rem;
+      display: none;
+    }
+  }
+  @media (max-width: 1440px) {
+    p.no-genre {
+      padding-top: 1rem;
+      font-size: 2rem;
+      padding-left: 3rem;
+    }
+  }
   li {
     list-style: none;
 
