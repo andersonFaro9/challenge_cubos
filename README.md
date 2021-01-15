@@ -34,11 +34,8 @@ Clique aqui para ver: [Desafio](https://youtu.be/LM2NGcy1_jc)
 
 Filmes devidamente carregados com suas informações mais relevantes:
 
-Thor
+
 ![image2](https://user-images.githubusercontent.com/3237047/104764624-6a703d80-5746-11eb-84c9-43782fd4111c.png)
-
-
-Mulher maravilha
 
 ![image3](https://user-images.githubusercontent.com/3237047/104764786-a1465380-5746-11eb-99d6-8ab1b7748743.png)
 
