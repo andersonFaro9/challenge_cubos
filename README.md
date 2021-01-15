@@ -1,9 +1,5 @@
-# Sobre
+## Sobre
 Esse foi um desafio colocado pela empresa de tecnologia Cubos Tecnologia, localizada em Salvador, Bahia. Nele foi consumido informações da api: The Moviedb que traz filmes em diversos idiomas; vai desde dos anos 60, 70, etc e até os filmes mais atuais.
-
-## Clique aqui para ver:
-
-[Desafio](https://youtu.be/LM2NGcy1_jc)
 
 ## Tecnologias utilizadas no projeto.
 
@@ -24,6 +20,35 @@ Esse foi um desafio colocado pela empresa de tecnologia Cubos Tecnologia, locali
 
 - Nesse desafio foi configurado e instalado ferramentas como o eslint, editorconfig, prettier.config.js, entre outros; Para maiores informações, segue link com os detalhes: https://www.notion.so/Padr-es-de-projeto-com-ESLint-Prettier-e-EditorConfig-0b57b47a24724c859c0cf226aa0cc3a7
 
+
+## Prints importantes:
+
+## Desafio
+
+![Screen Shot 2021-01-15 at 15 36 57](https://user-images.githubusercontent.com/3237047/104765395-993ae380-5747-11eb-9a86-228eafbc2d0e.png)
+
+Clique aqui para ver: [Desafio](https://youtu.be/LM2NGcy1_jc)
+
+
+
+### Filmes devidamente carregados com suas informações mais relevantes
+
+#### Thor
+![image2](https://user-images.githubusercontent.com/3237047/104764624-6a703d80-5746-11eb-84c9-43782fd4111c.png)
+
+
+#### Mulher maravilha
+
+![image3](https://user-images.githubusercontent.com/3237047/104764786-a1465380-5746-11eb-99d6-8ab1b7748743.png)
+
+
+
+
+### Uso de imagens "default" no caso de não possuir "poster" do filme
+
+![image1](https://user-images.githubusercontent.com/3237047/104764404-1feec100-5746-11eb-92f9-fbfead01cf11.png)
+
+![image4](https://user-images.githubusercontent.com/3237047/104765004-f71afb80-5746-11eb-917e-5bff956b99b4.png)
 
 ## :memo: Licença
 
