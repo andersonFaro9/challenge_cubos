@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { parseISO, format } from 'date-fns';
 
 import { Form, Info, Genry, Container } from './styles';
-import fail from '../../assets/no_internet.svg';
+import fail from '../../assets/fail-conection.svg';
 import imageDefault from '../../assets/image-default.svg';
 
 import Header from '../../components/Header/styles';
@@ -42,9 +42,7 @@ const Search: React.FC = () => {
     [genres],
   );
 
-  async function handleSubmit(
-    event: FormEvent<HTMLFormElement>,
-  ): Promise<void> {
+  async function toSearch(event: FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
 
     setLoading(true);
@@ -66,7 +64,7 @@ const Search: React.FC = () => {
 
       setNewSearch('');
     } catch (err) {
-      setLoading(false);
+      console.log('ocorreu um erro na busca');
     }
   }
 
@@ -82,7 +80,7 @@ const Search: React.FC = () => {
             <Header>Movies</Header>
           </header>
           <Form>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={toSearch}>
               <input
                 value={newSearch}
                 onChange={e => setNewSearch(e.target.value)}

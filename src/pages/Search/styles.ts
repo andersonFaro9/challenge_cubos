@@ -164,7 +164,7 @@ export const Info = styled.div`
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     background-color: #ebebeb;
-    color: #2b2a2ad4;
+    color: #2b2a2aad;
   }
 
   @media (max-width: 425px) {

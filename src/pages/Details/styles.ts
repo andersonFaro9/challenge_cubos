@@ -159,20 +159,9 @@ export const Sinopse = styled.div`
     font-size: 1.5rem;
     text-align: center;
     text-align: center;
-    color: #1d1c1c;
+    color: #0b0a0a;
     font-weight: 100;
   }
-  /* @media (max-width: 488px) {
-    ul.list-info {
-      display: flex;
-      flex-direction: column;
-      margin-top: 2rem;
-      color: #1e6194;
-      p {
-        margin: 0.2rem;
-      }
-    }
-  } */
 
   @media (max-width: 425px) {
     ul.list-info {
