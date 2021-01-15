@@ -1,11 +1,9 @@
 # Sobre
-Esse foi um desafio proposto pela empresa de tecnologia: Cubos Tecnologia e pudemos consumir a api da the moviedb.org/ e visualisar os filmes trazidos pela api.
+Esse foi um desafio colocado pela empresa de tecnologia Cubos Tecnologia, localizada em Salvador, Bahia. Nele foi consumido informações da api: The Moviedb que traz filmes em diversos idiomas; vai desde dos anos 60, 70, etc e até os filmes mais atuais.
 
-# Meu muito obrigado pela oportunidade!!!!!!
+## Clique aqui para ver:
 
-## Clique no link abaixo para ver como ficou o projeto:
-
-[Desafio](https://youtu.be/ZaDlhCAl4yI)
+[Desafio](https://youtu.be/LM2NGcy1_jc)
 
 ## Tecnologias utilizadas no projeto.
 
