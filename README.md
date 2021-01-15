@@ -44,6 +44,10 @@ Clique aqui para ver: [Desafio](https://youtu.be/LM2NGcy1_jc)
 
 ![image4](https://user-images.githubusercontent.com/3237047/104765004-f71afb80-5746-11eb-917e-5bff956b99b4.png)
 
+#### Quando não há internet:
+
+![image5](https://user-images.githubusercontent.com/3237047/104767088-62b29800-574a-11eb-9cb3-88e75b7cbb90.png)
+
 ## :memo: Licença
 
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
