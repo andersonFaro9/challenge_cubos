@@ -90,9 +90,7 @@ const Search: React.FC = () => {
           </Form>
 
           {loading ? (
-            <div className="error">
-              Aguardando informações, isso pode levar algum tempo...
-            </div>
+            <div>Aguardando informações, isso pode levar algum tempo...</div>
           ) : (
             <Info>
               {currentMovies.map(movie => (

@@ -4,11 +4,6 @@ export const Container = styled.div`
   width: 100%;
   margin: 0 auto;
   text-align: center;
-  div.error {
-    line-height: 2rem;
-    color: #1e6093;
-    font-size: 2rem;
-  }
 `;
 
 export const Form = styled.div`
