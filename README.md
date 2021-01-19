@@ -14,7 +14,7 @@ Testados nos principais navegadores:
 Chrome, Firefox, Edge, Safari, Opera e Vivaldi.
 
 Compilação e instalação de dependências e "libs".
-- Para criação do projeto foi o  "create-react-app oProject -template=typescript" que é um "boilerplate" em Ts que agiliza o tempo de criação do projeto.
+- Para criação do projeto foi o  "create-react-app nome_do_projeto --template=typescript" que é um "boilerplate" em Ts que agiliza o tempo de criação do projeto.
 
 - Nesse desafio foi utilizado para instalação de "libs" o gerenciador de pacotes chamado: Yarn.
 
