@@ -28,22 +28,21 @@ Compilação e instalação de dependências e "libs".
 Prints importantes:
 
 
-Clique aqui para ver: [Desafio](https://youtu.be/LM2NGcy1_jc)
+Clique aqui para ver o vídeo: [Desafio](https://youtu.be/LM2NGcy1_jc) ou o site no ar: https://challenge-cubos.andersonfaro9.vercel.app/
 
-![Screen Shot 2021-01-15 at 15 36 57](https://user-images.githubusercontent.com/3237047/104765395-993ae380-5747-11eb-9a86-228eafbc2d0e.png)
+
 
 Filmes devidamente carregados com suas informações mais relevantes:
 
 
-![image2](https://user-images.githubusercontent.com/3237047/104764624-6a703d80-5746-11eb-84c9-43782fd4111c.png)
+![image1](https://user-images.githubusercontent.com/3237047/105754945-6c49b600-5f29-11eb-948a-15ef1acc9153.png)
+![image2](https://user-images.githubusercontent.com/3237047/105754959-6fdd3d00-5f29-11eb-9205-91e736c0cac4.png)
+![image4](https://user-images.githubusercontent.com/3237047/105755319-e67a3a80-5f29-11eb-840f-764d131da891.png)
 
-![image3](https://user-images.githubusercontent.com/3237047/104764786-a1465380-5746-11eb-99d6-8ab1b7748743.png)
 
 Uso de imagens "default" no caso de não possuir "poster" do filme:
 
-![image1](https://user-images.githubusercontent.com/3237047/104764404-1feec100-5746-11eb-92f9-fbfead01cf11.png)
-
-![image4](https://user-images.githubusercontent.com/3237047/104765004-f71afb80-5746-11eb-917e-5bff956b99b4.png)
+![image3](https://user-images.githubusercontent.com/3237047/105755144-a915ad00-5f29-11eb-860c-aae69c1fd0e3.png)
 
 Quando não há internet:
 
