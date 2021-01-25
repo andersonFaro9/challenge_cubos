@@ -23,7 +23,7 @@ export const Form = styled.div`
     border: 2px solid #fff;
 
     &::placeholder {
-      color: ${props => props.theme.colors.blue1};
+      color: ${props => props.theme.colors.green1};
       opacity: 0.4;
       font-size: 1.8rem;
     }
