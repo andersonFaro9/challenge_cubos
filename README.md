@@ -28,7 +28,7 @@ Compilação e instalação de dependências e "libs".
 Prints importantes:
 
 
-Clique aqui para ver o vídeo: [Desafio](https://youtu.be/LM2NGcy1_jc) ou o site no ar: https://challenge-cubos.andersonfaro9.vercel.app/
+Clique aqui para ver o vídeo: [Desafio](https://youtu.be/LM2NGcy1_jc) ou no  link: https://cutt.ly/zj14GSv
 
 
 
