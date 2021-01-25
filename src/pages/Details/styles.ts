@@ -27,7 +27,7 @@ export const Date = styled.div`
     flex-direction: row;
     padding-left: 4rem;
     padding-top: 2rem;
-    color: #1e6194;
+    color: ${props => props.theme.colors.blue1};
     font-size: 3.5rem;
   }
   @media (max-width: 768px) {
@@ -35,7 +35,7 @@ export const Date = styled.div`
       float: left;
       padding-left: 0rem;
       padding-top: 2rem;
-      color: #1e6194;
+      color: ${props => props.theme.colors.blue1};
       font-size: 3.5rem;
     }
   }
@@ -44,7 +44,7 @@ export const Date = styled.div`
       float: left;
       padding-left: 2rem;
       padding-top: 2rem;
-      color: #1e6194;
+      color: ${props => props.theme.colors.blue1};
       font-size: 3.5rem;
     }
   }
@@ -65,28 +65,24 @@ export const Sinopse = styled.div`
     flex: 1;
   }
   div.film {
-    padding-top: 0.1rem;
-    padding-left: 4rem;
-    padding-right: 3rem;
+    padding: 0.1rem 3rem 4rem;
     text-align: left;
     p.overview {
       margin-top: 3rem;
       font-size: 2rem;
-      opacity: 0.8;
       width: 100%;
-      color: #2b2a2ad4;
+      font-weight: 500;
+      color: ${props => props.theme.colors.gray3};
     }
   }
   @media (max-width: 768px) {
     div.film {
-      padding-left: 2rem;
-      padding-top: 2rem;
+      padding: 2rem 0rem 2rem;
     }
   }
   @media (max-width: 799px) {
     div.film {
-      padding-left: 2rem;
-      padding-top: 2rem;
+      padding: 2rem 0rem 0rem 2rem;
     }
   }
   p.no-info {
@@ -121,10 +117,8 @@ export const Sinopse = styled.div`
   }
   p.info {
     text-align: left;
-    padding-top: 1.8rem;
-    padding-bottom: 1rem;
-    color: #1e6194;
-    /* font-weight: 550; */
+    padding: 1.8rem 0rem 1rem 0rem;
+    color: ${props => props.theme.colors.blue1};
     opacity: 0.8;
     font-size: 3rem;
     margin-top: 2rem;
@@ -147,7 +141,7 @@ export const Sinopse = styled.div`
     align-items: flex-end;
     justify-content: space-between;
     margin-top: 2rem;
-    color: #1e6194;
+    color: ${props => props.theme.colors.blue1};
     opacity: 0.9;
     font-size: 3rem;
   }
@@ -170,7 +164,7 @@ export const Sinopse = styled.div`
       justify-content: flex-start;
       flex-direction: column;
       margin-top: 2rem;
-      color: #1e6194;
+      color: ${props => props.theme.colors.blue1};
       p {
         margin: 0.2rem;
       }
@@ -182,7 +176,7 @@ export const Sinopse = styled.div`
   div.popularity {
     display: flex;
     flex-direction: row-reverse;
-    border: 4px solid #116193;
+    border: 4px solid ${props => props.theme.colors.blue1};
     border-radius: 50px;
     width: 100px;
     height: 100px;
@@ -215,8 +209,8 @@ export const Sinopse = styled.div`
     }
   }
   div.value {
-    background: #116193;
-    border: 6px solid #03ced5;
+    background: ${props => props.theme.colors.blue1};
+    border: 6px solid ${props => props.theme.colors.green1};
     border-radius: 50px;
     width: 100%;
     height: 100%;
@@ -224,11 +218,11 @@ export const Sinopse = styled.div`
     line-height: 75px;
     text-align: center;
     font-size: 35px;
-    color: #03ced5;
+    color: ${props => props.theme.colors.green1};
   }
   li {
     list-style: none;
-    color: #1e6194;
+    color: ${props => props.theme.colors.blue1};
     font-weight: 550;
     font-size: 2rem;
   }
@@ -255,7 +249,7 @@ export const Sinopse = styled.div`
       margin-right: 1rem;
       background-color: white;
       font-size: 16px;
-      color: #116193;
+      color: ${props => props.theme.colors.blue1};
       text-align: center;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -283,7 +277,6 @@ export const Sinopse = styled.div`
 
 export const Trailer = styled.div`
   .trailer {
-    margin-top: 40px;
-    margin-bottom: 10px;
+    margin: 40px 0rem 10px 0rem;
   }
 `;

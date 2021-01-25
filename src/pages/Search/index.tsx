@@ -79,6 +79,7 @@ const Search: React.FC = () => {
           <header>
             <Header>Movies</Header>
           </header>
+
           <Form>
             <form onSubmit={toSearch}>
               <input

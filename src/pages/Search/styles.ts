@@ -14,11 +14,8 @@ export const Form = styled.div`
     height: 5rem;
     width: 95%;
     margin: 4rem auto;
-
     max-width: 100%;
-
     padding: 0 1.5rem;
-
     font-size: 2rem;
     background-color: #e6e6e6;
     border-radius: 3.2rem;
@@ -26,90 +23,77 @@ export const Form = styled.div`
     border: 2px solid #fff;
 
     &::placeholder {
-      color: #116193;
+      color: ${props => props.theme.colors.blue1};
       opacity: 0.4;
-
-      font-weight: 100;
-
       font-size: 1.8rem;
     }
   }
 `;
 
-export const Info = styled.div`
-  display: flex;
+export const Info = styled(Form)`
   flex-direction: column;
   width: 95%;
-  max-width: 100%;
   margin: 1rem auto;
 
   div.details {
-    color: #45d9db;
+    color: ${props => props.theme.colors.green1};
     font-size: 3.6rem;
-    background-color: #116193;
+    background-color: ${props => props.theme.colors.blue1};
     text-align: left;
     width: 95%;
     height: 7rem;
   }
-
+  @media (max-width: 425px) {
+    div.details {
+      width: 70%;
+    }
+  }
   p.no-info {
-    display: flex;
-    padding-left: 3rem;
-    color: #8c8c8c;
+    color: ${props => props.theme.colors.gray1};
     font-size: 3rem;
-    padding-top: 2rem;
+    padding: 2rem 0rem 0rem 3rem;
   }
 
   @media (max-width: 768px) {
     p.no-info {
-      padding-top: 3rem;
-      padding-left: 3rem;
+      padding: 3rem 0rem 0rem 3rem;
     }
   }
 
   @media (max-width: 1440px) {
     p.no-info {
-      padding-top: 2rem;
       font-size: 2rem;
-      padding-left: 3rem;
+      padding: 2rem 0rem 0rem 3rem;
     }
   }
 
   a {
     text-decoration: none;
-    margin-top: 1rem;
-    margin-bottom: 4rem;
+    margin: 1rem 0rem 4rem 0rem;
     display: flex;
-    background-color: #ebebeb;
+    background-color: ${props => props.theme.colors.gray2};
   }
 
   div.percentage {
     position: absolute;
-    border-color: #116193;
-    border-style: solid;
+    border: 5px solid ${props => props.theme.colors.blue1};
     padding-top: 1.5rem;
     font-size: 2.6rem;
     margin-left: 1.1rem;
-
     text-align: center;
     border-radius: 45%;
     height: 7rem;
-    border-style: solid;
-    border-width: 5px;
     width: 8.2rem;
     height: 9.4rem;
-    background-color: #116193;
+    background-color: ${props => props.theme.colors.blue1};
   }
   p.value {
-    background-color: #116193;
+    background-color: ${props => props.theme.colors.blue1};
     border-style: solid;
     margin-top: 0.1rem;
     border-radius: 50%;
-
     padding-top: 1.5rem;
-
     border-width: 0.6rem;
-
     width: 7.2rem;
     height: 6.9rem;
   }
@@ -130,8 +114,7 @@ export const Info = styled.div`
   }
 
   p.title {
-    padding-left: 11rem;
-    padding-top: 2rem;
+    padding: 2rem 0rem 0rem 11rem;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -140,26 +123,22 @@ export const Info = styled.div`
   }
 
   p.date {
-    padding-top: 1rem;
+    padding: 1rem 0rem 0rem 11rem;
     font-size: 2.1rem;
     color: #afafaf;
-    padding-left: 11rem;
   }
   p.overview {
-    padding-top: 1rem;
     text-align: left;
     font-size: 2rem;
-    padding-right: 1rem;
-    padding-left: 1.5rem;
+    padding: 1rem 0rem 1rem 1.5rem;
     width: 100%;
-    font-family: Abel, Lato, Arial, Helvetica, sans-serif;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
-    background-color: #ebebeb;
-    color: #2b2a2aad;
+    background-color: ${props => props.theme.colors.gray2};
+    color: ${props => props.theme.colors.gray3};
   }
 
   @media (max-width: 425px) {
@@ -195,16 +174,15 @@ export const Genry = styled.div`
 
   @media (max-width: 762px) {
     ul.genres {
-      flex-direction: column;
+      width: 320px;
     }
   }
 
   p.no-genre {
     display: flex;
-    padding-top: 1rem;
     font-size: 3rem;
-    padding-left: 3rem;
-    color: #8c8c8c;
+    padding: 1rem 0rem 0rem 3rem;
+    color: ${props => props.theme.colors.gray1};
   }
   @media (max-width: 375px) {
     p.no-genre {
@@ -222,7 +200,6 @@ export const Genry = styled.div`
   }
   li {
     list-style: none;
-
     border: 2px solid #b0c8d6;
     border-radius: 35px;
     width: 9rem;
@@ -230,7 +207,7 @@ export const Genry = styled.div`
     height: 2.9rem;
     background-color: white;
     font-size: 15px;
-    color: #116193;
+    color: ${props => props.theme.colors.blue1};
     text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -248,42 +225,5 @@ export const Genry = styled.div`
     li {
       margin-bottom: 1rem;
     }
-  }
-`;
-
-export const Footer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  div.button-pages {
-    color: #45d9db;
-    padding-top: 0.7rem;
-    padding-left: 0.4rem;
-    font-size: 2.6rem;
-
-    text-align: center;
-    border-radius: 50%;
-    width: 5.9rem;
-    height: 5.7rem;
-    border-style: solid;
-    border-width: 4px;
-    border-color: #116193;
-    background-color: #116193;
-  }
-  div.button-pages > button {
-    color: #45d9db;
-    margin-top: -3rem;
-    margin-left: -0.5rem;
-    font-size: 2.6rem;
-
-    text-align: center;
-    border-radius: 50%;
-    width: 5.3rem;
-    height: 5rem;
-    border-style: solid;
-    border-width: 4px;
-    border-color: #45d9db;
-    background-color: #116193;
   }
 `;
